@@ -6,4 +6,4 @@ Using OpenGL and some C# wrappers alongside GLFW.NET and StbImageSharp.
 
 Engine contains all the gubbins. Sandbox Application contains all my testbed projects, which can be toggled via Main.cs.
 
-Work in progress.
+Work in progress. BishEngine is a temp name.
