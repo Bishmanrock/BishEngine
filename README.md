@@ -7,3 +7,9 @@ Using OpenGL and some C# wrappers alongside GLFW.NET and StbImageSharp.
 Engine contains all the gubbins. Sandbox Application contains all my testbed projects, which can be toggled via Main.cs.
 
 Work in progress. BishEngine is a temp name.
+
+**QUESTIONS**
+
+**Hey, there's a bunch of stuff in here that works the same/is named similar to Unity functions...**
+
+Correct. This project originally started as a way for me to expand my knowledge and move away from Unity. As such, I've kept with some naming conventions I was alreayd used to, just to smooth over the learning process.
