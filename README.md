@@ -21,3 +21,9 @@ Correct. This engine is purely built as a learning excercise for myself, and to 
 **Why C#?**
 
 Simply: I enjoy C#. I have history with Python, Delphi, and a few other languages. I even started learning the basics of C++ before starting this project, and dabbling with Raylib. However, when I sit down to write code, C# is the language I enjoy and never feels like a chore. I know there are arguments out there for better performance in other languages. I find these arguments irrelevant given I have no interest in building realistic games. C# is the language I enjoy, and given this is a passion project it makes most sense to go with it. Going with a language I don't enjoy would only result in burnout and lack of enjoyment, and ultimately an abandoned project.
+
+**Hey, why did you do X/Y/Z in the code? Seems a little weird...**
+
+It probably is. I don't claim to be a professional coder. Everything here is me learning and throwing stuff at the wall to see what sticks. See something you think looks weird? There's a good chance I don't even realise that it's weird. Tell me! Then I can learn and progress.
+
+That said, sometimes I will just whip up a really rough class to support a concept, with the idea of refactoring it later into something better.
