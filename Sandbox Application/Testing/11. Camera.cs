@@ -1,6 +1,4 @@
-﻿using System;
-using System.Numerics;
-using System.Reflection.Metadata;
+﻿using System.Reflection.Metadata;
 using Engine;
 using GLFW;
 using static OpenGL.GL;
@@ -9,7 +7,6 @@ using static System.Formats.Asn1.AsnWriter;
 using GLFW.Game;
 using OpenGL;
 using System.Drawing;
-using Engine;
 
 // We can now move around objects. However, how can we move our "camera", or modify our perspective?
 // In this tutorial, I'll show you how to setup a full projection/view/model (PVM) matrix.

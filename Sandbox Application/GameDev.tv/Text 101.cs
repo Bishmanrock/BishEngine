@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Numerics;
 using System.Reflection.Metadata;
 using Engine;
 using GLFW;

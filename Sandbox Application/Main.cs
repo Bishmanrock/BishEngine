@@ -1,6 +1,9 @@
 ﻿using Engine;
 
 Console.WriteLine("Main entry point...");
+
+// OPENGL LEARNING MATERIAL //
+
 //EngineMain game = new HelloWindow();
 //EngineMain game = new ColouredBackground();
 //EngineMain game = new HelloTriangle();
@@ -14,9 +17,9 @@ Console.WriteLine("Main entry point...");
 //EngineMain game = new CameraTest();
 //EngineMain game = new MoreCubes();
 
-EngineMain game = new CubeMovementTest();
+//EngineMain game = new CubeMovementTest();
 
-//yis
+EngineMain game = new FontTest();
 
 //EngineMain game = new Instantiation();
 
@@ -34,7 +37,7 @@ EngineMain game = new CubeMovementTest();
 
 //EngineMain game = new Triangle();
 
-// GAMEDEV.TV COURSE
+// GAMEDEV.TV COURSES //
 
 //EngineMain game = new NumberWizard();
 //EngineMain game = new Text101();

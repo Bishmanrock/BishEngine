@@ -14,8 +14,4 @@
     <ProjectReference Include="..\StbImageSharp\StbImageSharp.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Transforms\" />
-  </ItemGroup>
-
 </Project>

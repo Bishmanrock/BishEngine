@@ -3,13 +3,14 @@ using System.IO;
 using System.Text;
 using System.Collections.Generic;
 using OpenGL;
-using System.Numerics;
 using static OpenGL.GL;
 using GLFW;
 using System.Drawing;
 using System.Xml.Linq;
 
 // A simple class meant to help create shaders.
+namespace Engine
+{
     public class Shader
     {
         public readonly uint Handle;
@@ -28,65 +29,65 @@ using System.Xml.Linq;
             // The fragment shader is responsible for then converting the vertices to "fragments", which represent all the data OpenGL needs to draw a pixel.
             //   The fragment shader is what we'll be using the most here.
 
-        // Load vertex shader and compile
-        var shaderSource = File.ReadAllText(vertPath);
+            // Load vertex shader and compile
+            var shaderSource = File.ReadAllText(vertPath);
 
-        // GL.CreateShader will create an empty shader (obviously). The ShaderType enum denotes which type of shader will be created.
-        uint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+            // GL.CreateShader will create an empty shader (obviously). The ShaderType enum denotes which type of shader will be created.
+            uint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 
-        // Now, bind the GLSL source code
-        glShaderSource(vertexShader, shaderSource);
+            // Now, bind the GLSL source code
+            glShaderSource(vertexShader, shaderSource);
 
-        // And then compile
-        CompileShader(vertexShader);
+            // And then compile
+            CompileShader(vertexShader);
 
-        // We do the same for the fragment shader.
-        shaderSource = File.ReadAllText(fragPath);
-        var fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-        glShaderSource(fragmentShader, shaderSource);
-        CompileShader(fragmentShader);
+            // We do the same for the fragment shader.
+            shaderSource = File.ReadAllText(fragPath);
+            var fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+            glShaderSource(fragmentShader, shaderSource);
+            CompileShader(fragmentShader);
 
-        // These two shaders must then be merged into a shader program, which can then be used by OpenGL.
-        // To do this, create a program...
-        Handle = glCreateProgram();
+            // These two shaders must then be merged into a shader program, which can then be used by OpenGL.
+            // To do this, create a program...
+            Handle = glCreateProgram();
 
-        // Attach both shaders...
-        glAttachShader(Handle, vertexShader);
-        glAttachShader(Handle, fragmentShader);
+            // Attach both shaders...
+            glAttachShader(Handle, vertexShader);
+            glAttachShader(Handle, fragmentShader);
 
-        // And then link them together.
-        LinkProgram(Handle);
+            // And then link them together.
+            LinkProgram(Handle);
 
-        DeleteShader(vertexShader);
-        DeleteShader(fragmentShader);
-    }
+            DeleteShader(vertexShader);
+            DeleteShader(fragmentShader);
+        }
 
-    private static void CompileShader(uint shader)
-    {
-        // Try to compile the shader
-        glCompileShader(shader);
-
-        // Check for compilation errors
-        int[] status = glGetShaderiv(shader, GL_COMPILE_STATUS, 1);
-
-        if (status[0] == 0)
+        private static void CompileShader(uint shader)
         {
-            // We can use `GL.GetShaderInfoLog(shader)` to get information about the error.
+            // Try to compile the shader
+            glCompileShader(shader);
+
+            // Check for compilation errors
+            int[] status = glGetShaderiv(shader, GL_COMPILE_STATUS, 1);
+
+            if (status[0] == 0)
+            {
+                // We can use `GL.GetShaderInfoLog(shader)` to get information about the error.
                 var infoLog = glGetShaderInfoLog(shader);
                 throw new System.Exception($"Error occurred whilst compiling Shader({shader}).\n\n{infoLog}");
+            }
         }
-    }
 
         private static void LinkProgram(uint program)
         {
             // We link the program
             glLinkProgram(program);
 
-        // Check for linking errors
-        int[] status =  glGetProgramiv(program, GL_LINK_STATUS, 1);
+            // Check for linking errors
+            int[] status = glGetProgramiv(program, GL_LINK_STATUS, 1);
 
-        if (status[0] == 0)
-        {
+            if (status[0] == 0)
+            {
                 // We can use `GL.GetProgramInfoLog(program)` to get information about the error.
                 throw new System.Exception($"Error occurred whilst linking Program({program})");
             }
@@ -122,11 +123,11 @@ using System.Xml.Linq;
         public void SetInt(string name, int data)
         {
             glUseProgram(Handle);
-        //glUniform1i(glGetUniformLocation(Handle, data));
-        //GL.Uniform1(_uniformLocations[name], data);
+            //glUniform1i(glGetUniformLocation(Handle, data));
+            //GL.Uniform1(_uniformLocations[name], data);
 
-        glUniform1i(glGetUniformLocation(Handle, name), data);
-    }
+            glUniform1i(glGetUniformLocation(Handle, name), data);
+        }
 
         /// <summary>
         /// Set a uniform float on this shader.
@@ -136,17 +137,17 @@ using System.Xml.Linq;
         public void SetFloat(string name, float data)
         {
             glUseProgram(Handle);
-        //GL.Uniform1(_uniformLocations[name], data);
+            //GL.Uniform1(_uniformLocations[name], data);
 
-        glUniform1i(glGetUniformLocation(Handle, name), (int)data);
-    }
+            glUniform1i(glGetUniformLocation(Handle, name), (int)data);
+        }
 
-    // Call function to set the colour of the shader
-    public void SetColor(float red, float green, float blue, float alpha)
-    {
-        int shaderLocation = glGetUniformLocation(Handle, "colour");
-        glUniform4f(shaderLocation, red, green, blue, alpha);
-    }
+        // Call function to set the colour of the shader
+        public void SetColor(float red, float green, float blue, float alpha)
+        {
+            int shaderLocation = glGetUniformLocation(Handle, "colour");
+            glUniform4f(shaderLocation, red, green, blue, alpha);
+        }
 
         /// <summary>
         /// Set a uniform Matrix4 on this shader
@@ -160,27 +161,27 @@ using System.Xml.Linq;
         /// </remarks>
         public unsafe void SetMatrix4(string name, Matrix4x4 data)
         {
-        glUseProgram(Handle);
+            glUseProgram(Handle);
 
-        int location = glGetUniformLocation(Handle, name);
+            int location = glGetUniformLocation(Handle, name);
 
-        // convert the matrix4x4 to a float[]
-        float[] cells = { data.M11, data.M12, data.M13, data.M14,
+            // convert the matrix4x4 to a float[]
+            float[] cells = { data.M11, data.M12, data.M13, data.M14,
                             data.M21, data.M22, data.M23, data.M24,
                             data.M31, data.M32, data.M33, data.M34,
                             data.M41, data.M42, data.M43, data.M44};
 
-        glUniformMatrix4fv(
-            location,
-            1,
-            true, // True to transpose matrcies so they're in a column-major format
-            cells);
+            glUniformMatrix4fv(
+                location,
+                1,
+                true, // True to transpose matrcies so they're in a column-major format
+                cells);
 
 
-        //glUniformMatrix4fv(glGetUniformLocation(Handle, name), 1, true, (float*)1);
+            //glUniformMatrix4fv(glGetUniformLocation(Handle, name), 1, true, (float*)1);
 
 
-        //GL.UniformMatrix4(_uniformLocations[name], true, ref data);
+            //GL.UniformMatrix4(_uniformLocations[name], true, ref data);
         }
 
         /// <summary>
@@ -194,27 +195,28 @@ using System.Xml.Linq;
             //GL.Uniform3(_uniformLocations[name], data);
         }
 
-    public float[] GetMatrix4x4Values(Matrix4x4 m)
-    {
-        return new float[]
+        public float[] GetMatrix4x4Values(Matrix4x4 m)
         {
+            return new float[]
+            {
                 m.M11, m.M12, m.M13, m.M14,
                 m.M21, m.M22, m.M23, m.M24,
                 m.M31, m.M32, m.M33, m.M34,
                 m.M41, m.M42, m.M43, m.M44
-        };
-    }
+            };
+        }
 
-    // When the shader program is linked, it no longer needs the individual shaders attached to it; the compiled code is copied into the shader program. Detach them, and then delete them.
-    private void DeleteShader(uint shader)
-    {
-        glDetachShader(Handle, shader);
-        glDeleteShader(shader);
-    }
+        // When the shader program is linked, it no longer needs the individual shaders attached to it; the compiled code is copied into the shader program. Detach them, and then delete them.
+        private void DeleteShader(uint shader)
+        {
+            glDetachShader(Handle, shader);
+            glDeleteShader(shader);
+        }
 
-    public void SetMatrix4x4(string uniformName, Matrix4x4 mat)
-    {
-        int location = glGetUniformLocation(Handle, uniformName);
-        glUniformMatrix4fv(location, 1, false, GetMatrix4x4Values(mat));
+        public void SetMatrix4x4(string uniformName, Matrix4x4 mat)
+        {
+            int location = glGetUniformLocation(Handle, uniformName);
+            glUniformMatrix4fv(location, 1, false, GetMatrix4x4Values(mat));
+        }
     }
 }

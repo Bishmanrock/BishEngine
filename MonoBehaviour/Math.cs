@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
+using System.Runtime.CompilerServices;
+using System.Runtime.ConstrainedExecution;
+using System.Runtime.Versioning;
+using System.Security;
 
 namespace Engine
 {
@@ -108,6 +112,178 @@ namespace Engine
             }
 
             return num2;
+        }
+
+        //
+        // Summary:
+        //     Returns the square root of a specified number.
+        //
+        // Parameters:
+        //   d:a
+        //     The number whose square root is to be found.
+        //
+        // Returns:
+        //     One of the values in the following table. d parameter Return value Zero or positive
+        //     The positive square root of d. Negative System.Double.NaN Equals System.Double.NaNSystem.Double.NaN
+        //     Equals System.Double.PositiveInfinitySystem.Double.PositiveInfinity
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [SecuritySafeCritical]
+        [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
+        public static extern double Sqrt(double d);
+
+        //
+        // Summary:
+        //     Returns the absolute value of a single-precision floating-point number.
+        //
+        // Parameters:
+        //   value:
+        //     A number that is greater than or equal to System.Single.MinValue, but less than
+        //     or equal to System.Single.MaxValue.
+        //
+        // Returns:
+        //     A single-precision floating-point number, x, such that 0 ≤ x ≤System.Single.MaxValue.
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [SecuritySafeCritical]
+        public static extern float Abs(float value);
+
+        //
+        // Summary:
+        //     Returns the angle whose cosine is the specified number.
+        //
+        // Parameters:
+        //   d:
+        //     A number representing a cosine, where d must be greater than or equal to -1,
+        //     but less than or equal to 1.
+        //
+        // Returns:
+        //     An angle, θ, measured in radians, such that 0 ≤θ≤π -or- System.Double.NaN if
+        //     d < -1 or d > 1 or d equals System.Double.NaN.
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [SecuritySafeCritical]
+        public static extern double Acos(double d);
+
+        //
+        // Summary:
+        //     Returns the cosine of the specified angle.
+        //
+        // Parameters:
+        //   d:
+        //     An angle, measured in radians.
+        //
+        // Returns:
+        //     The cosine of d. If d is equal to System.Double.NaN, System.Double.NegativeInfinity,
+        //     or System.Double.PositiveInfinity, this method returns System.Double.NaN.
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [SecuritySafeCritical]
+        public static extern double Cos(double d);
+
+        //
+        // Summary:
+        //     Returns the sine of the specified angle.
+        //
+        // Parameters:
+        //   a:
+        //     An angle, measured in radians.
+        //
+        // Returns:
+        //     The sine of a. If a is equal to System.Double.NaN, System.Double.NegativeInfinity,
+        //     or System.Double.PositiveInfinity, this method returns System.Double.NaN.
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [SecuritySafeCritical]
+        public static extern double Sin(double a);
+
+        //
+        // Summary:
+        //     Returns the tangent of the specified angle.
+        //
+        // Parameters:
+        //   a:
+        //     An angle, measured in radians.
+        //
+        // Returns:
+        //     The tangent of a. If a is equal to System.Double.NaN, System.Double.NegativeInfinity,
+        //     or System.Double.PositiveInfinity, this method returns System.Double.NaN.
+        [MethodImpl(MethodImplOptions.InternalCall)]
+        [SecuritySafeCritical]
+        public static extern double Tan(double a);
+
+        //
+        // Summary:
+        //     Returns the smaller of two 8-bit signed integers.
+        //
+        // Parameters:
+        //   val1:
+        //     The first of two 8-bit signed integers to compare.
+        //
+        //   val2:
+        //     The second of two 8-bit signed integers to compare.
+        //
+        // Returns:
+        //     Parameter val1 or val2, whichever is smaller.
+        [CLSCompliant(false)]
+        [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
+        public static sbyte Min(sbyte val1, sbyte val2)
+        {
+            if (val1 > val2)
+            {
+                return val2;
+            }
+
+            return val1;
+        }
+
+        //
+        // Summary:
+        //     Returns the smaller of two 8-bit unsigned integers.
+        //
+        // Parameters:
+        //   val1:
+        //     The first of two 8-bit unsigned integers to compare.
+        //
+        //   val2:
+        //     The second of two 8-bit unsigned integers to compare.
+        //
+        // Returns:
+        //     Parameter val1 or val2, whichever is smaller.
+        [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
+        public static byte Min(byte val1, byte val2)
+        {
+            if (val1 > val2)
+            {
+                return val2;
+            }
+
+            return val1;
+        }
+
+        //
+        // Summary:
+        //     Returns the smaller of two single-precision floating-point numbers.
+        //
+        // Parameters:
+        //   val1:
+        //     The first of two single-precision floating-point numbers to compare.
+        //
+        //   val2:
+        //     The second of two single-precision floating-point numbers to compare.
+        //
+        // Returns:
+        //     Parameter val1 or val2, whichever is smaller. If val1, val2, or both val1 and
+        //     val2 are equal to System.Single.NaN, System.Single.NaN is returned.
+        [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
+        public static float Min(float val1, float val2)
+        {
+            if (val1 < val2)
+            {
+                return val1;
+            }
+
+            if (float.IsNaN(val1))
+            {
+                return val1;
+            }
+
+            return val2;
         }
     }
 }

@@ -1,4 +1,3 @@
-using System.Numerics;
 using Engine;
 using GLFW;
 using static OpenGL.GL;

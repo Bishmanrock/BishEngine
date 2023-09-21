@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Numerics;
 using System.Reflection.Metadata;
 using Engine;
 using GLFW;
@@ -132,9 +131,9 @@ public class Transformations : EngineMain
 
     private void OpenTKApproach()
     {
-        Matrix4x4 rotation = Matrix4x4.CreateRotationZ(90f);
-        Matrix4x4 scale = Matrix4x4.CreateScale(0.5f, 0.5f, 0.5f);
-        Matrix4x4 trans = rotation * scale;
+        System.Numerics.Matrix4x4 rotation = System.Numerics.Matrix4x4.CreateRotationZ(90f);
+        System.Numerics.Matrix4x4 scale = System.Numerics.Matrix4x4.CreateScale(0.5f, 0.5f, 0.5f);
+        System.Numerics.Matrix4x4 trans = rotation * scale;
 
         glUseProgram(_shader.Handle);
 

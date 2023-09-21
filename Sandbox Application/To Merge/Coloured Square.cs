@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using static OpenGL.GL;
 using GLFW;
 using Engine;
-using System.Numerics;
 
 internal class ColoredSquare : EngineMain
 {

@@ -170,7 +170,7 @@ namespace Engine
         ///   The matrix is transposed before being sent to the shader.
         ///   </para>
         /// </remarks>
-        public void SetMatrix4(string name, Matrix4x4 data)
+        public void SetMatrix4(string name, System.Numerics.Matrix4x4 data)
         {
             glUseProgram(Handle);
             //GL.UniformMatrix4(_uniformLocations[name], true, ref data);

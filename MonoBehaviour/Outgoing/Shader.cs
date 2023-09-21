@@ -74,13 +74,13 @@ namespace Engine
             glUseProgram(ProgramID);
         }
 
-        public void SetMatrix4x4(string uniformName, Matrix4x4 mat)
+        public void SetMatrix4x4(string uniformName, System.Numerics.Matrix4x4 mat)
         {
             int location = glGetUniformLocation(ProgramID, uniformName);
             glUniformMatrix4fv(location, 1, false, GetMatrix4x4Values(mat));
         }
 
-        private float[] GetMatrix4x4Values(Matrix4x4 m)
+        private float[] GetMatrix4x4Values(System.Numerics.Matrix4x4 m)
         {
             return new float[]
             {

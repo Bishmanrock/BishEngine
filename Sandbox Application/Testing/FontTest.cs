@@ -12,7 +12,7 @@ using System.Drawing;
 // We can now move around objects. However, how can we move our "camera", or modify our perspective?
 // In this tutorial, I'll show you how to setup a full projection/view/model (PVM) matrix.
 // In addition, we'll make the rectangle rotate over time.
-public class CubeTest : EngineMain
+public class FontTest : EngineMain
 {
     private readonly float[] _vertices =
     {

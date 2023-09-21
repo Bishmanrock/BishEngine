@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using static OpenGL.GL;
@@ -63,7 +62,7 @@ namespace Engine
             1, 2, 3
         };
 
-        private Matrix4x4 position;
+        private System.Numerics.Matrix4x4 position;
 
         private Shader shader;
 

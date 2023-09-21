@@ -5,7 +5,6 @@ using static OpenGL.GL;
 using StbImageSharp;
 using System.Runtime.InteropServices;
 using OpenGL;
-using System.Numerics;
 
 public class Square2 : EngineMain
 {
