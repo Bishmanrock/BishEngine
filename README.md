@@ -12,4 +12,8 @@ Work in progress. BishEngine is a temp name.
 
 **Hey, there's a bunch of stuff in here that works the same/is named similar to Unity functions...**
 
-Correct. This project originally started as a way for me to expand my knowledge and move away from Unity. As such, I've kept with some naming conventions I was alreayd used to, just to smooth over the learning process.
+Correct. This project originally started as a way for me to expand my knowledge and move away from Unity. As such, I've kept with some naming conventions I was already used to, just to smooth over the learning process.
+
+**This engine is terrible!**
+
+Correct. This engine is purely built as a learning excercise for myself, and to hopefully allow myself to create *simple* games in future. It is not intended to replace, or even be anywhere near to the level of competing to major, and even minor games engines available on the market. It has been uploaded to GitHub as a means for myself to keep track, and I would not advise any user to seriously consider using this for their project. However, for those interested in engines, I'm more than happy to collaborate or get feedback.
