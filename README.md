@@ -18,6 +18,10 @@ Correct. This project originally started as a way for me to expand my knowledge 
 
 Correct. This engine is purely built as a learning excercise for myself, and to hopefully allow myself to create *simple* games in future. It is not intended to replace, or even be anywhere near to the level of competing to major, and even minor games engines available on the market. It has been uploaded to GitHub as a means for myself to keep track, and I would not advise any user to seriously consider using this for their project. However, for those interested in engines, I'm more than happy to collaborate or get feedback.
 
+**This isn't even an engine!**
+
+Correct. I've pretty much just started on it, so it's very bare bones, and pretty much just working off the LearnOpenGL and a few other resources. What's here you'd barely actually refer to as an actual engine, and you definately wouldn't (and to be honest, probably couldn't) use for an actual game. Like I say, it's a learning project, with the intention to slowly add some engine functionalities into it.
+
 **Why C#?**
 
 Simply: I enjoy C#. I have history with Python, Delphi, and a few other languages. I even started learning the basics of C++ before starting this project, and dabbling with Raylib. However, when I sit down to write code, C# is the language I enjoy and never feels like a chore. I know there are arguments out there for better performance in other languages. I find these arguments irrelevant given I have no interest in building realistic games. C# is the language I enjoy, and given this is a passion project it makes most sense to go with it. Going with a language I don't enjoy would only result in burnout and lack of enjoyment, and ultimately an abandoned project.
