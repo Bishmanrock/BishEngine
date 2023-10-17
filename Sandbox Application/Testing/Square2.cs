@@ -1,10 +1,6 @@
-﻿using System;
-using Engine;
-using GLFW;
+﻿using Engine;
 using static OpenGL.GL;
 using StbImageSharp;
-using System.Runtime.InteropServices;
-using OpenGL;
 
 public class Square2 : EngineMain
 {
@@ -115,16 +111,11 @@ public class Square2 : EngineMain
         glBindVertexArray(vao);
 
         int myUniformLocation = glGetUniformLocation(shader.Handle, "aTexCoord");
-
-
-
-
-
     }
 
     public override void Initialize()
     {
-        Engine.Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
+        Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
     }
 
     public unsafe override void LoadContent()

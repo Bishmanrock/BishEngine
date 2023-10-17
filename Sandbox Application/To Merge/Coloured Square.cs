@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static OpenGL.GL;
-using GLFW;
+﻿using static OpenGL.GL;
 using Engine;
 
 internal class ColoredSquare : EngineMain
 {
     public override void Initialize()
     {
-        Engine.Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
+        Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
     }
 
     public unsafe override void LoadContent()

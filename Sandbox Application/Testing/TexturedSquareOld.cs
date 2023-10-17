@@ -1,15 +1,12 @@
-﻿using System;
-using System.Diagnostics;
-using Engine;
-using GLFW;
-using OpenGL;
+﻿using Engine;
 using static OpenGL.GL;
+using Timer = Engine.Timer;
 
 public class TexturedSquareOld : EngineMain
 {
     Shader2 shader;
 
-    private Stopwatch _timer;
+    private Engine.Timer _timer;
 
     private uint _vertexBufferObject;
 
@@ -17,7 +14,7 @@ public class TexturedSquareOld : EngineMain
 
     public override void Initialize()
     {
-        Engine.Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
+        Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
     }
 
     public unsafe override void LoadContent()
@@ -53,7 +50,7 @@ public class TexturedSquareOld : EngineMain
 
         shader.Use();
 
-        _timer = new Stopwatch();
+        _timer = new Timer();
         _timer.Start();
     }
 
@@ -70,7 +67,7 @@ public class TexturedSquareOld : EngineMain
 
         double timeValue = Time.totalElapsedSeconds;
 
-        float greenValue = (float)System.Math.Sin(timeValue) / 2.0f + 0.5f;
+        float greenValue = (float)Maths.Sin(timeValue) / 2.0f + 0.5f;
 
         int vertexColorLocation = glGetUniformLocation(shader.Handle, "ourColor");
 

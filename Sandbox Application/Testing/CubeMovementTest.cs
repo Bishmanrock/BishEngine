@@ -1,13 +1,6 @@
-﻿using System;
-using System.Reflection.Metadata;
-using Engine;
-using GLFW;
+﻿using Engine;
 using static OpenGL.GL;
-using GlmSharp;
-using static System.Formats.Asn1.AsnWriter;
-using GLFW.Game;
-using OpenGL;
-using System.Drawing;
+using Maths = Engine.Maths;
 
 // We can now move around objects. However, how can we move our "camera", or modify our perspective?
 // In this tutorial, I'll show you how to setup a full projection/view/model (PVM) matrix.
@@ -91,7 +84,7 @@ public class CubeMovementTest : EngineMain
 
     public override void Initialize()
     {
-        Engine.Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
+        Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
     }
 
     public unsafe override void LoadContent()
@@ -145,7 +138,6 @@ public class CubeMovementTest : EngineMain
 
         _shader.Use();
 
-
         // For the view, we don't do too much here. Next tutorial will be all about a Camera class that will make it much easier to manipulate the view.
         // For now, we move it backwards three units on the Z axis.
         _view = Matrix4x4.CreateTranslation(0.0f, 0.0f, -3.0f);
@@ -157,7 +149,7 @@ public class CubeMovementTest : EngineMain
         //   Far-clipping. Any vertices farther away from the camera than this value will be clipped.
         //_projection = Matrix4x4.CreatePerspectiveFieldOfView(Engine.Math.DegreesToRadians(45), DisplayManager.windowSize.X / DisplayManager.windowSize.Y, 0.1f, 100.0f);
 
-        _projection = Matrix4x4.CreatePerspectiveFieldOfView(Engine.Math.DegreesToRadians(45f), Engine.Window.windowSize.X / Engine.Window.windowSize.Y, 0.1f, 100.0f);
+        _projection = Matrix4x4.CreatePerspectiveFieldOfView(Maths.DegreesToRadians(45f), Window.windowSize.x / Window.windowSize.y, 0.1f, 100.0f);
 
 
 

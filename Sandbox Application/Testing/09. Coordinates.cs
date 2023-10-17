@@ -1,13 +1,6 @@
-﻿using System;
-using System.Reflection.Metadata;
-using GLFW;
-using static OpenGL.GL;
-using GlmSharp;
-using static System.Formats.Asn1.AsnWriter;
-using GLFW.Game;
-using OpenGL;
-using System.Drawing;
+﻿using static OpenGL.GL;
 using Engine;
+using Maths = Engine.Maths;
 
 // We can now move around objects. However, how can we move our "camera", or modify our perspective?
 // In this tutorial, I'll show you how to setup a full projection/view/model (PVM) matrix.
@@ -55,7 +48,7 @@ public class Coordinates : EngineMain
 
     public override void Initialize()
     {
-        Engine.Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
+        Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
     }
 
     public unsafe override void LoadContent()
@@ -86,8 +79,8 @@ public class Coordinates : EngineMain
 
         // shader.vert has been modified. Take a look at it after the explanation in OnRenderFrame.
         _shader = new Shader(
-            "F:\\GameDev\\MonoBehaviour\\MonoBehaviour\\Rendering\\Shaders\\Transformation.vert",
-            "F:\\GameDev\\MonoBehaviour\\MonoBehaviour\\Rendering\\Shaders\\Transformation.frag");
+            "F:\\GameDev\\Engine\\Engine\\Rendering\\Shaders\\Transformation.vert",
+            "F:\\GameDev\\Engine\\Engine\\Rendering\\Shaders\\Transformation.frag");
         _shader.Use();
 
         var vertexLocation = _shader.GetAttribLocation("aPosition");
@@ -98,8 +91,8 @@ public class Coordinates : EngineMain
         glEnableVertexAttribArray((uint)texCoordLocation);
         glVertexAttribPointer((uint)texCoordLocation, 2, GL_FLOAT, false, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 
-        _texture = Texture.LoadFromFile("F:\\GameDev\\MonoBehaviour\\Sandbox Application\\Texture\\Untitled.png");
-        _texture2 = Texture.LoadFromFile("F:\\GameDev\\MonoBehaviour\\Sandbox Application\\Texture\\awesomeface.png");
+        _texture = Texture.LoadFromFile("F:\\GameDev\\Engine\\Sandbox Application\\Texture\\Untitled.png");
+        _texture2 = Texture.LoadFromFile("F:\\GameDev\\Engine\\Sandbox Application\\Texture\\awesomeface.png");
 
         _texture.Use(GL_TEXTURE0);
         _texture2.Use(GL_TEXTURE1);
@@ -121,7 +114,7 @@ public class Coordinates : EngineMain
         //   Far-clipping. Any vertices farther away from the camera than this value will be clipped.
         //_projection = Matrix4x4.CreatePerspectiveFieldOfView(Engine.Math.DegreesToRadians(45), DisplayManager.windowSize.X / DisplayManager.windowSize.Y, 0.1f, 100.0f);
 
-        _projection = Matrix4x4.CreatePerspectiveFieldOfView(Engine.Math.DegreesToRadians(45f), Engine.Window.windowSize.X / Engine.Window.windowSize.Y, 0.1f, 100.0f);
+        _projection = Matrix4x4.CreatePerspectiveFieldOfView(Maths.DegreesToRadians(45f), Window.windowSize.x / Window.windowSize.y, 0.1f, 100.0f);
 
 
 

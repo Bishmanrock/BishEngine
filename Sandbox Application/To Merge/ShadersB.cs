@@ -1,7 +1,4 @@
-﻿using System;
-using Engine;
-using GLFW;
-// glfw3;
+﻿using Engine;
 using static OpenGL.GL;
 
 public class ShadersB : EngineMain
@@ -42,7 +39,7 @@ public class ShadersB : EngineMain
 
     public override void Initialize()
     {
-        Engine.Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
+        Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
     }
 
     public unsafe override void LoadContent()

@@ -1,11 +1,5 @@
-﻿using System;
-using System.Reflection.Metadata;
-using Engine;
-using GLFW;
+﻿using Engine;
 using static OpenGL.GL;
-using GlmSharp;
-using static System.Formats.Asn1.AsnWriter;
-
 
 public class Transformations : EngineMain
 {
@@ -46,7 +40,7 @@ public class Transformations : EngineMain
 
     public override void Initialize()
     {
-        Engine.Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
+        Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
     }
 
     public unsafe override void LoadContent()
@@ -72,8 +66,8 @@ public class Transformations : EngineMain
 
         // The shaders have been modified to include the texture coordinates, check them out after finishing the OnLoad function.
         _shader = new Shader(
-            "F:\\GameDev\\MonoBehaviour\\MonoBehaviour\\Rendering\\Shaders\\Transformation.vert",
-            "F:\\GameDev\\MonoBehaviour\\MonoBehaviour\\Rendering\\Shaders\\Transformation.frag");
+            "F:\\GameDev\\Engine\\Engine\\Rendering\\Shaders\\Transformation.vert",
+            "F:\\GameDev\\Engine\\Engine\\Rendering\\Shaders\\Transformation.frag");
         _shader.Use();
 
         // Because there's now 5 floats between the start of the first vertex and the start of the second,
@@ -90,9 +84,9 @@ public class Transformations : EngineMain
         glEnableVertexAttribArray((uint)texCoordLocation);
         glVertexAttribPointer((uint)texCoordLocation, 2, GL_FLOAT, false, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 
-        _texture = Texture.LoadFromFile("F:\\GameDev\\MonoBehaviour\\Sandbox Application\\Texture\\Untitled.png");
+        _texture = Texture.LoadFromFile("F:\\GameDev\\Engine\\Sandbox Application\\Texture\\Untitled.png");
 
-        _texture2 = Texture.LoadFromFile("F:\\GameDev\\MonoBehaviour\\Sandbox Application\\Texture\\awesomeface.png");
+        _texture2 = Texture.LoadFromFile("F:\\GameDev\\Engine\\Sandbox Application\\Texture\\awesomeface.png");
 
         _texture.Use(GL_TEXTURE0);
         _texture2.Use(GL_TEXTURE1);
@@ -131,9 +125,9 @@ public class Transformations : EngineMain
 
     private void OpenTKApproach()
     {
-        System.Numerics.Matrix4x4 rotation = System.Numerics.Matrix4x4.CreateRotationZ(90f);
-        System.Numerics.Matrix4x4 scale = System.Numerics.Matrix4x4.CreateScale(0.5f, 0.5f, 0.5f);
-        System.Numerics.Matrix4x4 trans = rotation * scale;
+        Matrix4x4 rotation = Matrix4x4.CreateRotationZ(90f);
+        Matrix4x4 scale = Matrix4x4.CreateScale(0.5f, 0.5f, 0.5f);
+        Matrix4x4 trans = rotation * scale;
 
         glUseProgram(_shader.Handle);
 

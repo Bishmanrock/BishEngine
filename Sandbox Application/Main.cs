@@ -1,25 +1,15 @@
 ﻿using Engine;
 
-Console.WriteLine("Main entry point...");
-
-// OPENGL LEARNING MATERIAL //
-
-//EngineMain game = new HelloWindow();
-//EngineMain game = new ColouredBackground();
-//EngineMain game = new HelloTriangle();
-//EngineMain game = new InputTest();
-//EngineMain game = new HelloSquare();
-//EngineMain game = new TexturedSquare();
-//EngineMain game = new MultipleTextures();
-//EngineMain game = new Transformations();
+//EngineMain game = new HelloSquare(); // Blank screen
+//EngineMain game = new Transformations(); // Renders nothing
 //EngineMain game = new Coordinates();
-//EngineMain game = new CubeTest();
+//EngineMain game = new CubeTest(); // Working 2023 09 22
 //EngineMain game = new CameraTest();
 //EngineMain game = new MoreCubes();
 
 //EngineMain game = new CubeMovementTest();
 
-EngineMain game = new FontTest();
+//EngineMain game = new FontTest();
 
 //EngineMain game = new Instantiation();
 
@@ -41,3 +31,7 @@ EngineMain game = new FontTest();
 
 //EngineMain game = new NumberWizard();
 //EngineMain game = new Text101();
+
+//EngineMain game = new NewTesting();
+
+//EngineMain game = new CubeTest2(); // Testing Transform movement

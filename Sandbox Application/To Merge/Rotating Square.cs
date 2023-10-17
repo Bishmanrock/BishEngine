@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static OpenGL.GL;
+﻿using static OpenGL.GL;
 using GLFW;
-using System.Numerics;
-using Engine;
 
 namespace Engine
 {
@@ -21,7 +14,7 @@ namespace Engine
 
         public override void Initialize()
         {
-            Engine.Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
+            Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
         }
 
         public unsafe override void LoadContent()
@@ -102,10 +95,10 @@ namespace Engine
 
             Vector2 position = new Vector2(400, 300);
             Vector2 scale = new Vector2(150, 100);
-            float rotation = MathF.Sin(Time.totalElapsedSeconds) * MathF.PI * 2f;
+            float rotation = Maths.Sin(Time.totalElapsedSeconds) * Maths.Pi * 2f;
 
-            Matrix4x4 trans = Matrix4x4.CreateTranslation(position.X, position.Y, 0);
-            Matrix4x4 sca = Matrix4x4.CreateScale(scale.X, scale.Y, 1);
+            Matrix4x4 trans = Matrix4x4.CreateTranslation(position.x, position.y, 0);
+            Matrix4x4 sca = Matrix4x4.CreateScale(scale.x, scale.y, 1);
             Matrix4x4 rot = Matrix4x4.CreateRotationZ(rotation);
 
             shader.SetMatrix4("model", sca * rot * trans);
@@ -116,8 +109,6 @@ namespace Engine
             glBindVertexArray(vao);
             glDrawArrays(GL_TRIANGLES, 0, 6);
             glBindVertexArray(0);
-
-            Glfw.SwapBuffers(Window.window);
         }
     }
 }

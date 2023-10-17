@@ -1,6 +1,4 @@
-﻿using System;
-using Engine;
-using GLFW;
+﻿using Engine;
 using static OpenGL.GL;
 
 public class HelloSquare : EngineMain
@@ -14,8 +12,8 @@ public class HelloSquare : EngineMain
     private void CreateShaderProgram()
     {
         shader = new Shader(
-            "F:\\GameDev\\MonoBehaviour\\MonoBehaviour\\Rendering\\Shaders\\Shader.vert",
-            "F:\\GameDev\\MonoBehaviour\\MonoBehaviour\\Rendering\\Shaders\\Shader.frag");
+            "F:\\GameDev\\Engine\\Engine\\Rendering\\Shaders\\Shader.vert",
+            "F:\\GameDev\\Engine\\Engine\\Rendering\\Shaders\\Shader.frag");
 
         //shader.Load();
 
@@ -71,7 +69,7 @@ public class HelloSquare : EngineMain
 
     public override void Initialize()
     {
-        Engine.Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
+        Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
     }
 
     public override void LoadContent()

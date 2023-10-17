@@ -1,5 +1,4 @@
 ﻿using Engine;
-using GLFW;
 using static OpenGL.GL;
 
 // We can now move around objects. However, how can we move our "camera", or modify our perspective?
@@ -84,11 +83,11 @@ public class Instantiation : EngineMain
 
     // Then, we create two matrices to hold our view and projection. They're initialized at the bottom of OnLoad.
     // The view matrix is what you might consider the "camera". It represents the current viewport in the window.
-    private System.Numerics.Matrix4x4 _view;
+    private Matrix4x4 _view;
 
     // This represents how the vertices will be projected. It's hard to explain through comments,
     // so check out the web version for a good demonstration of what this does.
-    private System.Numerics.Matrix4x4 _projection;
+    private Matrix4x4 _projection;
 
     private Cube cube1;
     private Cube cube2;
@@ -106,7 +105,7 @@ public class Instantiation : EngineMain
     public override void Initialize()
     {
         mouse = new Mouse();
-        Engine.Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
+        Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
     }
 
     public unsafe override void LoadContent()
@@ -191,15 +190,14 @@ public class Instantiation : EngineMain
         // We initialize the camera so that it is 3 units back from where the rectangle is.
         // We also give it the proper aspect ratio.
         _camera = new CameraFPS();
-        _camera.SetUp(Vector3.UnitZ * 3, Engine.Window.windowSize.X / (float)Engine.Window.windowSize.Y);
+        _camera.SetUp(Vector3.UnitZ * 3, Window.windowSize.x / (float)Window.windowSize.y);
 
         // We make the mouse cursor invisible and captured so we can have proper FPS-camera movement.
         //CursorState = CursorState.Grabbed;
 
-
         // For the view, we don't do too much here. Next tutorial will be all about a Camera class that will make it much easier to manipulate the view.
         // For now, we move it backwards three units on the Z axis.
-        _view = System.Numerics.Matrix4x4.CreateTranslation(0.0f, 0.0f, -3.0f);
+        _view = Matrix4x4.CreateTranslation(0.0f, 0.0f, -3.0f);
 
         // For the matrix, we use a few parameters.
         //   Field of view. This determines how much the viewport can see at once. 45 is considered the most "realistic" setting, but most video games nowadays use 90
@@ -208,7 +206,7 @@ public class Instantiation : EngineMain
         //   Far-clipping. Any vertices farther away from the camera than this value will be clipped.
         //_projection = Matrix4x4.CreatePerspectiveFieldOfView(Engine.Math.DegreesToRadians(45), DisplayManager.windowSize.X / DisplayManager.windowSize.Y, 0.1f, 100.0f);
 
-        _projection = System.Numerics.Matrix4x4.CreatePerspectiveFieldOfView(Engine.Math.DegreesToRadians(45f), Engine.Window.windowSize.X / Engine.Window.windowSize.Y, 0.1f, 100.0f);
+        _projection = Matrix4x4.CreatePerspectiveFieldOfView(Maths.DegreesToRadians(45f), Window.windowSize.x / Window.windowSize.y, 0.1f, 100.0f);
 
 
     }
@@ -218,36 +216,36 @@ public class Instantiation : EngineMain
         const float cameraSpeed = 1.5f;
         const float sensitivity = 0.2f;
 
-        if (Glfw.GetKey(Engine.Window.window, Keys.W) == InputState.Press)
+        if (Input.GetKeyDown(Actions.Up))
         {
             _camera.Position += _camera.Front * cameraSpeed * Time.deltaTime; // Forward
             Console.Write("W pressed");
         }
-        if (Glfw.GetKey(Engine.Window.window, Keys.S) == InputState.Press)
+        if (Input.GetKeyDown(Actions.Down))
         {
             _camera.Position -= _camera.Front * cameraSpeed * Time.deltaTime; // Backwards
             Console.Write("S pressed");
         }
-        if (Glfw.GetKey(Engine.Window.window, Keys.A) == InputState.Press)
+        if (Input.GetKeyDown(Actions.Left))
         {
             _camera.Position -= _camera.Right * cameraSpeed * Time.deltaTime; // Left
             Console.Write("A pressed");
         }
-        if (Glfw.GetKey(Engine.Window.window, Keys.D) == InputState.Press)
+        if (Input.GetKeyDown(Actions.Right))
         {
             _camera.Position += _camera.Right * cameraSpeed * Time.deltaTime; // Right
             Console.Write("D pressed");
         }
-        if (Glfw.GetKey(Engine.Window.window, Keys.Space) == InputState.Press)
+        if (Input.GetKeyDown(Actions.Action))
         {
             _camera.Position += _camera.Up * cameraSpeed * Time.deltaTime; // Up
             Console.Write("Space pressed");
         }
-        if (Glfw.GetKey(Engine.Window.window, Keys.LeftShift) == InputState.Press)
-        {
-            _camera.Position -= _camera.Up * cameraSpeed * Time.deltaTime; // Down
-            Console.Write("Left shift pressed");
-        }
+        //if (Glfw.GetKey(Engine.Window.window, Keys.LeftShift) == InputState.Press)
+        //{
+        //    _camera.Position -= _camera.Up * cameraSpeed * Time.deltaTime; // Down
+        //    Console.Write("Left shift pressed");
+        //}
 
         // Get the mouse state
         //var mouse = Mouse;
@@ -260,8 +258,8 @@ public class Instantiation : EngineMain
         else
         {
             // Calculate the offset of the mouse position
-            var deltaX = mouse.X - _lastPos.X;
-            var deltaY = mouse.Y - _lastPos.Y;
+            var deltaX = mouse.X - _lastPos.x;
+            var deltaY = mouse.Y - _lastPos.y;
             _lastPos = new Vector2(mouse.X, mouse.Y);
 
             // Apply the camera pitch and yaw (we clamp the pitch in the camera class)

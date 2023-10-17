@@ -1,6 +1,8 @@
 ﻿using Engine;
 using GLFW;
 using static OpenGL.GL;
+using Maths = Engine.Maths;
+using Window = Engine.Window;
 
 // We can now move around objects. However, how can we move our "camera", or modify our perspective?
 // In this tutorial, I'll show you how to setup a full projection/view/model (PVM) matrix.
@@ -77,7 +79,7 @@ public class MoreCubes : EngineMain
         };
 
     private CameraFPS _camera;
-    private Camera2D _camera2D;
+    //private Camera2D _camera;
 
     private uint _elementBufferObject;
 
@@ -108,7 +110,7 @@ public class MoreCubes : EngineMain
     public override void Initialize()
     {
         mouse = new Mouse();
-        Engine.Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
+        Window.SetBackgroundColour(new Vector4(0.2f, 0.3f, 0.3f, 1.0f));
     }
 
     public unsafe override void LoadContent()
@@ -145,8 +147,8 @@ public class MoreCubes : EngineMain
 
         // shader.vert has been modified. Take a look at it after the explanation in OnRenderFrame.
         _shader = new Shader(
-            "F:\\GameDev\\MonoBehaviour\\MonoBehaviour\\Rendering\\Shaders\\Transformation.vert",
-            "F:\\GameDev\\MonoBehaviour\\MonoBehaviour\\Rendering\\Shaders\\Transformation.frag");
+            "F:\\GameDev\\Engine\\Engine\\Rendering\\Shaders\\Transformation.vert",
+            "F:\\GameDev\\Engine\\Engine\\Rendering\\Shaders\\Transformation.frag");
         _shader.Use();
 
         var vertexLocation = _shader.GetAttribLocation("aPosition");
@@ -157,8 +159,8 @@ public class MoreCubes : EngineMain
         glEnableVertexAttribArray((uint)texCoordLocation);
         glVertexAttribPointer((uint)texCoordLocation, 2, GL_FLOAT, false, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 
-        _texture = Texture.LoadFromFile("F:\\GameDev\\MonoBehaviour\\Sandbox Application\\Texture\\Untitled.png");
-        _texture2 = Texture.LoadFromFile("F:\\GameDev\\MonoBehaviour\\Sandbox Application\\Texture\\awesomeface.png");
+        _texture = Texture.LoadFromFile("F:\\GameDev\\Engine\\Sandbox Application\\Texture\\Untitled.png");
+        _texture2 = Texture.LoadFromFile("F:\\GameDev\\Engine\\Sandbox Application\\Texture\\awesomeface.png");
 
         _texture.Use(GL_TEXTURE0);
         _texture2.Use(GL_TEXTURE1);
@@ -170,11 +172,11 @@ public class MoreCubes : EngineMain
 
         // We initialize the camera so that it is 3 units back from where the rectangle is.
         // We also give it the proper aspect ratio.
-        //_camera = new CameraFPS();
-        //_camera.SetUp(Vector3.UnitZ * 3, DisplayManager.windowSize.X / (float)DisplayManager.windowSize.Y);
+        _camera = new CameraFPS();
+        _camera.SetUp(Vector3.UnitZ * 3, Window.windowSize.x / Window.windowSize.y);
 
-        Vector2 position = new Vector2(0, 0);
-        _camera2D = new Camera2D(position, 0);
+        //Vector2 position = new Vector2(0, 0);
+        //_camera = new Camera(position, 0);
 
         // We make the mouse cursor invisible and captured so we can have proper FPS-camera movement.
         //CursorState = CursorState.Grabbed;
@@ -191,7 +193,7 @@ public class MoreCubes : EngineMain
         //   Far-clipping. Any vertices farther away from the camera than this value will be clipped.
         //_projection = Matrix4x4.CreatePerspectiveFieldOfView(Engine.Math.DegreesToRadians(45), DisplayManager.windowSize.X / DisplayManager.windowSize.Y, 0.1f, 100.0f);
 
-        _projection = Matrix4x4.CreatePerspectiveFieldOfView(Engine.Math.DegreesToRadians(45f), Engine.Window.windowSize.X / Engine.Window.windowSize.Y, 0.1f, 100.0f);
+        _projection = Matrix4x4.CreatePerspectiveFieldOfView(Maths.DegreesToRadians(45f), Window.windowSize.x / Window.windowSize.y, 0.1f, 100.0f);
 
 
 
@@ -203,36 +205,36 @@ public class MoreCubes : EngineMain
         const float cameraSpeed = 1.5f;
         const float sensitivity = 0.2f;
 
-        if (Glfw.GetKey(Engine.Window.window, Keys.W) == InputState.Press)
+        if (Input.GetKeyDown(Actions.Up))
         {
             _camera.Position += _camera.Front * cameraSpeed * Time.deltaTime; // Forward
             Console.Write("W pressed");
         }
-        if (Glfw.GetKey(Engine.Window.window, Keys.S) == InputState.Press)
+        if (Input.GetKeyDown(Actions.Down))
         {
             _camera.Position -= _camera.Front * cameraSpeed * Time.deltaTime; // Backwards
             Console.Write("S pressed");
         }
-        if (Glfw.GetKey(Engine.Window.window, Keys.A) == InputState.Press)
+        if (Input.GetKeyDown(Actions.Left))
         {
             _camera.Position -= _camera.Right * cameraSpeed * Time.deltaTime; // Left
             Console.Write("A pressed");
         }
-        if (Glfw.GetKey(Engine.Window.window, Keys.D) == InputState.Press)
+        if (Input.GetKeyDown(Actions.Right))
         {
             _camera.Position += _camera.Right * cameraSpeed * Time.deltaTime; // Right
             Console.Write("D pressed");
         }
-        if (Glfw.GetKey(Engine.Window.window, Keys.Space) == InputState.Press)
+        if (Input.GetKeyDown(Actions.Action))
         {
             _camera.Position += _camera.Up * cameraSpeed * Time.deltaTime; // Up
             Console.Write("Space pressed");
         }
-        if (Glfw.GetKey(Engine.Window.window, Keys.LeftShift) == InputState.Press)
-        {
-            _camera.Position -= _camera.Up * cameraSpeed * Time.deltaTime; // Down
-            Console.Write("Left shift pressed");
-        }
+        //if (Glfw.GetKey(Engine.Window.window, Keys.LeftShift) == InputState.Press)
+        //{
+        //    _camera.Position -= _camera.Up * cameraSpeed * Time.deltaTime; // Down
+        //    Console.Write("Left shift pressed");
+        //}
 
         // Get the mouse state
         //var mouse = Mouse;
@@ -245,8 +247,8 @@ public class MoreCubes : EngineMain
         else
         {
             // Calculate the offset of the mouse position
-            var deltaX = mouse.X - _lastPos.X;
-            var deltaY = mouse.Y - _lastPos.Y;
+            var deltaX = mouse.X - _lastPos.x;
+            var deltaY = mouse.Y - _lastPos.y;
             _lastPos = new Vector2(mouse.X, mouse.Y);
 
             // Apply the camera pitch and yaw (we clamp the pitch in the camera class)

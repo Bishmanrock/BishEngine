@@ -1,7 +1,4 @@
-using System;
 using Engine;
-using GLFW;
-// glfw3;
 using static OpenGL.GL;
 
 public class Triangle : EngineMain
