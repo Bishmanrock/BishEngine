@@ -31,3 +31,7 @@ Simply: I enjoy C#. I have history with Python, Delphi, and a few other language
 It probably is. I don't claim to be a professional coder. Everything here is me learning and throwing stuff at the wall to see what sticks. See something you think looks weird? There's a good chance I don't even realise that it's weird. Tell me! Then I can learn and progress.
 
 That said, sometimes I will just whip up a really rough class to support a concept, with the idea of refactoring it later into something better.
+
+**Is there a manual?**
+
+Ha!
