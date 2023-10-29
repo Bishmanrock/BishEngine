@@ -87,9 +87,7 @@ namespace Engine
                 glBufferData(GL_ELEMENT_ARRAY_BUFFER, _indices.Length * sizeof(uint), i, GL_STATIC_DRAW);
             }
 
-            shader = new Shader(
-                "F:\\GameDev\\Engine\\Engine\\Rendering\\Shaders\\Standard.vert",
-                "F:\\GameDev\\Engine\\Engine\\Rendering\\Shaders\\Transformation.frag");
+            shader = new Shader(ShaderType.TEMP_CUBE);
             shader.Use();
 
             var vertexLocation = shader.GetAttribLocation("aPosition");
@@ -100,8 +98,8 @@ namespace Engine
             glEnableVertexAttribArray((uint)texCoordLocation);
             glVertexAttribPointer((uint)texCoordLocation, 2, GL_FLOAT, false, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 
-            _texture = Texture.LoadFromFile("F:\\GameDev\\Engine\\Sandbox Application\\Texture\\Untitled.png");
-            _texture2 = Texture.LoadFromFile("F:\\GameDev\\Engine\\Sandbox Application\\Texture\\awesomeface.png");
+            _texture = Texture.LoadFromFile("F:\\GameDev\\.Engine\\Engine\\Sandbox Application\\Texture\\Untitled.png");
+            _texture2 = Texture.LoadFromFile("F:\\GameDev\\.Engine\\Engine\\Sandbox Application\\Texture\\awesomeface.png");
 
             _texture.Use(GL_TEXTURE0);
             _texture2.Use(GL_TEXTURE1);

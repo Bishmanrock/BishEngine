@@ -21,13 +21,111 @@ namespace Engine
         // Shaders are written in GLSL, which is a language very similar to C in its semantics.
         // The GLSL source is compiled *at runtime*, so it can optimize itself for the graphics card it's currently being used on.
         // A commented example of GLSL can be found in shader.vert.
-        public unsafe Shader(string vertPath, string fragPath)
+        public unsafe Shader(ShaderType type)
         {
             // There are several different types of shaders, but the only two you need for basic rendering are the vertex and fragment shaders.
             // The vertex shader is responsible for moving around vertices, and uploading that data to the fragment shader.
             //   The vertex shader won't be too important here, but they'll be more important later.
             // The fragment shader is responsible for then converting the vertices to "fragments", which represent all the data OpenGL needs to draw a pixel.
             //   The fragment shader is what we'll be using the most here.
+
+            string vertPath;
+            string fragPath;
+
+            if (type == ShaderType.STANDARD)
+            {
+                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\ShaderOLD.vert";
+
+                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\ShaderOLD.frag";
+            }
+            else if (type == ShaderType.TEMP_CUBE)
+            {
+                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\Standard.vert";
+
+                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\Transformation.frag";
+            }
+            else if (type == ShaderType.TEMP_SQUARE2)
+            {
+                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\square2.vert";
+
+                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\square2.frag";
+            }
+            else if (type == ShaderType.TEMP_OPENTK)
+            {
+                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\OpenTK.vert";
+
+                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\OpenTK.frag";
+            }
+            else if (type == ShaderType.TEMP_TRANSFORMATION)
+            {
+                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\Transformation.vert";
+
+                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\Transformation.frag";
+            }
+            else if (type == ShaderType.TEMP_COLOUREDSQUARE)
+            {
+                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\colouredsquare.vert";
+
+                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\colouredsquare.frag";
+            }
+            else if (type == ShaderType.TEMP_SHADER)
+            {
+                vertPath = "F:\\GameDev\\Engine\\Engine\\Rendering\\Shaders\\Shader.vert";
+
+                fragPath = "F:\\GameDev\\Engine\\Engine\\Rendering\\Shaders\\Shader.frag";
+            }
+            else if (type == ShaderType.TEMP_HELLOTRIANGLE)
+            {
+                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\hellosquare.vert";
+
+                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\hellotrianglealt.frag";
+            }
+            else if (type == ShaderType.TEMP_HELLOSQUARE1)
+            {
+                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\hellosquare.vert";
+
+                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\hellosquare.frag";
+            }
+            else if (type == ShaderType.TEMP_HELLOSQUARE2)
+            {
+                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\hellosquare2.vert";
+
+                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\hellosquare2.frag";
+            }
+            else if (type == ShaderType.TEMP1)
+            {
+                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\temp1.vert";
+
+                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\temp1.frag";
+            }
+            else if (type == ShaderType.TEMP2)
+            {
+                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\temp2.vert";
+
+                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\temp2.frag";
+            }
+            else if (type == ShaderType.TEMP3)
+            {
+                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\temp3.vert";
+
+                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\temp3.frag";
+            }
+            else if (type == ShaderType.TEMP_SHADEROLD)
+            {
+                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\ShaderOLD.vert";
+
+                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\ShaderOLD.frag";
+            }
+            else
+            {
+                // This is a backup catcher, but realistically should never be triggered
+
+                Console.Write("Error: No shader type provided!");
+
+                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\ShaderOLD.vert";
+
+                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\ShaderOLD.frag";
+            }
 
             // Load vertex shader and compile
             var shaderSource = File.ReadAllText(vertPath);

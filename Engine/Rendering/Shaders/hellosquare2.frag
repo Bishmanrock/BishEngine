@@ -1,10 +1,12 @@
 #version 330 core
 
-out vec4 result;
+// INPUTS
+in vec4 shaderColor;
 
-uniform vec3 color;
+// OUTPUTS
+out vec4 result;
 
 void main()
 {
-	result = vec4(color, 1.0);
+	result = vec4(shaderColor, 1.0);
 }
