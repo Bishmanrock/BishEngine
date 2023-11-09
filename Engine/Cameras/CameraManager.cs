@@ -2,7 +2,7 @@
 {
     public static class CameraManager
     {
-        private static Camera activeCamera;
+        public static Camera activeCamera { get; set; }
 
         public static void SetActiveCamera(Camera camera)
         {
