@@ -44,6 +44,8 @@ public class Sandbox : EngineMain
 
         //glDrawElements(GL_TRIANGLES, _indices.Length, GL_UNSIGNED_INT, NULL);
 
+        //cube.testTime = _time;
+
         cube.Draw();
 
         //SwapBuffers();

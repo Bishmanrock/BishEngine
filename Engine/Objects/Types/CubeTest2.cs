@@ -71,7 +71,7 @@ namespace Engine
 
         private uint _elementBufferObject;
 
-        private float testTime; // Temporary value, allows external commands to set movements for Draw. Needs a better way to control.
+        public float testTime; // Temporary value, allows external commands to set movements for Draw. Needs a better way to control.
 
         public unsafe CubeTest2()
         {
@@ -99,9 +99,20 @@ namespace Engine
                 glBufferData(GL_ELEMENT_ARRAY_BUFFER, _indices.Length * sizeof(uint), i, GL_STATIC_DRAW);
             }
 
-            shader = new Shader(ShaderType.TEMP_TRANSFORMATION);
+            bool testing = false;
 
-            shader.Use();
+            if (testing == false)
+            {
+                shader = new Shader(ShaderType.TEMP_TRANSFORMATION);
+                shader.Use();
+            }
+            else if (testing == true)
+            {
+                renderData.shader = new Shader(ShaderType.TEMP_TRANSFORMATION);
+                renderData.shader.Use();
+            }
+
+
 
             var vertexLocation = shader.GetAttribLocation("aPosition");
             glEnableVertexAttribArray((uint)vertexLocation);
@@ -121,6 +132,8 @@ namespace Engine
             shader.SetInt("texture1", 1);
 
             shader.Use();
+
+
         }
 
         public Shader GetShader()
@@ -141,7 +154,7 @@ namespace Engine
             // and finally apply the viewToProjectedSpace (aka projection) matrix.
 
             // For some reason you need to set the scale as 1. I imagine this is because the gameobject is initialising at 0, 0, 0.
-            transform.scale = new Vector3(1, 1, 1);
+
 
             //shader.SetMatrix4("model", model);
             shader.SetMatrix4("model", TransformToModel(transform));
