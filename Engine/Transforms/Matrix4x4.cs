@@ -56,6 +56,18 @@ namespace Engine
             return result;
         }
 
+        /// <summary>Creates a scaling matrix from a Vector3.</summary>
+        /// <param name="scale">The Vector3 to scale by.</param>
+        /// <returns>The scaling matrix.</returns>
+        public static Matrix4x4 CreateScale(Vector3 scale)
+        {
+            Matrix4x4 result = Identity;
+            result.M11 = scale.x;
+            result.M22 = scale.y;
+            result.M33 = scale.z;
+            return result;
+        }
+
         /// <summary>Creates a matrix for rotating points around the X axis.</summary>
         /// <param name="radians">The amount, in radians, by which to rotate around the X axis.</param>
         /// <returns>The rotation matrix.</returns>

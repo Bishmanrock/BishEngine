@@ -1,3 +1,3 @@
 ﻿using Engine;
 
-//EngineMain game = new [SCRIPT HERE]();
+EngineMain game = new Sandbox();

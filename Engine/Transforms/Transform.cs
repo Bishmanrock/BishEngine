@@ -20,7 +20,34 @@ namespace Engine
             position = new Vector3(0.0f, 0.0f, 0.0f);
             rotation = new Vector3(0, 0, 0);
             eulerRot = new Vector3(0.0f, 0.0f, 0.0f);
-            scale = new Vector3(1.0f, 1.0f, 1.0f);
+            scale = new Vector3(1, 1, 1);
+        }
+
+        /// <summary>
+        /// Sets the transform position
+        /// </summary>
+        /// <param name="newPosition"></param>
+        public void SetPosition(Vector3 newPosition)
+        {
+            position = newPosition;
+        }
+
+        /// <summary>
+        /// Sets the rotation
+        /// </summary>
+        /// <param name="newRotation"></param>
+        public void SetRotation(Vector3 newRotation)
+        {
+            rotation = newRotation;
+        }
+
+        /// <summary>
+        /// Sets the scale
+        /// </summary>
+        /// <param name="newScale"></param>
+        public void SetScale(Vector3 newScale)
+        {
+            scale = newScale;
         }
     }
 }
