@@ -5,5 +5,10 @@ namespace Engine
     public class GameObject : Object
     {
         public Transform transform;
+
+        public GameObject()
+        {
+            transform = new Transform();
+        }
     }
 }

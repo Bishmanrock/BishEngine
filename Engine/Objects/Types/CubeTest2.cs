@@ -7,7 +7,6 @@ namespace Engine
 {
     public class CubeTest2 : GameObject, IRenderable
     {
-
         public Renderable renderData { get; }
 
         private readonly float[] _vertices =
@@ -75,7 +74,7 @@ namespace Engine
 
         public unsafe CubeTest2()
         {
-            transform.SetScale(new Vector3(1, 1, 1));
+            //renderData = new Renderable();
 
             // We enable depth testing here. If you try to draw something more complex than one plane without this,
             // you'll notice that polygons further in the background will occasionally be drawn over the top of the ones in the foreground.
@@ -101,7 +100,7 @@ namespace Engine
                 glBufferData(GL_ELEMENT_ARRAY_BUFFER, _indices.Length * sizeof(uint), i, GL_STATIC_DRAW);
             }
 
-            bool testing = false;
+            bool testing = true;
 
             if (testing == false)
             {
@@ -114,13 +113,11 @@ namespace Engine
                 renderData.shader.Use();
             }
 
-
-
-            var vertexLocation = shader.GetAttribLocation("aPosition");
+            var vertexLocation = renderData.shader.GetAttribLocation("aPosition");
             glEnableVertexAttribArray((uint)vertexLocation);
             glVertexAttribPointer((uint)vertexLocation, 3, GL_FLOAT, false, 5 * sizeof(float), NULL);
 
-            var texCoordLocation = shader.GetAttribLocation("aTexCoord");
+            var texCoordLocation = renderData.shader.GetAttribLocation("aTexCoord");
             glEnableVertexAttribArray((uint)texCoordLocation);
             glVertexAttribPointer((uint)texCoordLocation, 2, GL_FLOAT, false, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 
@@ -130,17 +127,15 @@ namespace Engine
             _texture.Use(GL_TEXTURE0);
             _texture2.Use(GL_TEXTURE1);
 
-            shader.SetInt("texture0", 0);
-            shader.SetInt("texture1", 1);
+            renderData.shader.SetInt("texture0", 0);
+            renderData.shader.SetInt("texture1", 1);
 
-            shader.Use();
-
-
+            renderData.shader.Use();
         }
 
         public Shader GetShader()
         {
-            return shader;
+            return renderData.shader;
         }
 
         public unsafe void Draw()
@@ -159,9 +154,9 @@ namespace Engine
 
 
             //shader.SetMatrix4("model", model);
-            shader.SetMatrix4("model", TransformToModel(transform));
-            shader.SetMatrix4("view", CameraManager.activeCamera.GetView());
-            shader.SetMatrix4("projection", CameraManager.activeCamera.GetProjection());
+            renderData.shader.SetMatrix4("model", TransformToModel(transform));
+            renderData.shader.SetMatrix4("view", CameraManager.activeCamera.GetView());
+            renderData.shader.SetMatrix4("projection", CameraManager.activeCamera.GetProjection());
 
             glBindVertexArray(_vertexArrayObject);
 
