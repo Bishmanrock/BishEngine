@@ -38,6 +38,8 @@ namespace Engine
 
             LoadContent();
 
+            RenderingManager.StartRenderingManager();
+
             // This is the main game loop for the engine
             while (Glfw.WindowShouldClose(Window.window) == false)
             {
@@ -52,6 +54,8 @@ namespace Engine
                 Glfw.PollEvents(); // Poll for operating system events, such as keyboard or mouse input events
 
                 Window.Render();
+
+                //RenderingManager.Draw(); // Not in full use yet so commented out
 
                 Draw();
 

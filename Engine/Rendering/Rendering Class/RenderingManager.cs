@@ -4,16 +4,33 @@ namespace Engine
 {
     public static class RenderingManager
     {
-        //private List
+        private static List<GameObject> renderList = new List<GameObject>();
 
-        public static void AddToManager()
+        // Sets up the rendering manager
+        public static void StartRenderingManager()
         {
 
         }
 
+        // Adds a GameObject to the renderList
+        public static void Add(GameObject gameObject)
+        {
+            renderList.Add(gameObject);
+        }
+
+        // Removes a GameObject from the renderList
+        public static void Remove(GameObject gameObject)
+        {
+            renderList.Remove(gameObject);
+        }
+
+        // Cycles through all active GameObjects in the list and triggers their Draw functions
         public static void Draw()
         {
-
+            foreach(GameObject gameObject in renderList)
+            {
+                //gameObject.Draw();
+            }
         }
     }
 }
