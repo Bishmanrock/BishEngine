@@ -1,7 +1,6 @@
 ﻿namespace Engine
 {
-    [Serializable]
-    public struct Quaternion : IEquatable<Quaternion>
+    [Serializable] public struct Quaternion : IEquatable<Quaternion>
     {
         public float X;
 

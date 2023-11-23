@@ -1,4 +1,4 @@
-﻿// Class that controls where in the world space an object sits
+﻿// The Transform component determines the Position, Rotation, and Scale of every object. Every GameObject has a Transform.
 
 namespace Engine
 {

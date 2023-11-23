@@ -1,4 +1,6 @@
-﻿namespace Engine
+﻿// Camera2D is intended to be a camera specifically for 2D. This may now be redundant though.
+
+namespace Engine
 {
     public class Camera2D
     {

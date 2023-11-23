@@ -1,4 +1,6 @@
-﻿namespace Engine
+﻿// Camera FPS is a camera intended to be used specifically used for FPS style games. This has never been used properly yet, just a test script.
+
+namespace Engine
 {
     // This is the camera class as it could be set up after the tutorials on the website. It is important to note there are a few ways you could have set up this camera. For example, you could have also managed the player input inside the camera class, and a lot of the properties could have been made into functions.
 

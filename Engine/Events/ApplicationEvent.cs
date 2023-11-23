@@ -1,4 +1,6 @@
-﻿namespace Engine
+﻿// I have absolutely no idea what this is.
+
+namespace Engine
 {
     public class WindowResizeEvent : Event
     {

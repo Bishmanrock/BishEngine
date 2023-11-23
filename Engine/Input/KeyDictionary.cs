@@ -6,9 +6,9 @@ namespace Engine
 {
     public static class KeyDictionary
     {
-        static Dictionary<Actions, KeyObject> dictionary = new Dictionary<Actions, KeyObject>();
+        static Dictionary<KeyCode, KeyObject> dictionary = new Dictionary<KeyCode, KeyObject>();
 
-        public static void Add(Actions action, Keys key)
+        public static void Add(KeyCode action, Keys key)
         {
             KeyObject keyObject = new KeyObject();
             keyObject.key = key;
@@ -17,7 +17,7 @@ namespace Engine
             dictionary.Add(action, keyObject);
         }
 
-        public static bool Action(Actions action)
+        public static bool Action(KeyCode action)
         {
             if (Glfw.GetKey(Window.window, dictionary.GetValueOrDefault(action).key) == InputState.Press)
             {
@@ -46,7 +46,7 @@ namespace Engine
         }
 
         // If key is held, add to the timeHeld for that key
-        private static void AddKeyHoldTimer(Actions action)
+        private static void AddKeyHoldTimer(KeyCode action)
         {
             KeyObject keyObject = GetDictionaryValue(action);
 
@@ -56,7 +56,7 @@ namespace Engine
         }
 
         // If key is up, rest the timeHeld to zero
-        private static void ResetKeyHoldTimer(Actions action)
+        private static void ResetKeyHoldTimer(KeyCode action)
         {
             KeyObject keyObject = GetDictionaryValue(action);
 
@@ -65,13 +65,13 @@ namespace Engine
             dictionary[action] = keyObject;
         }
 
-        private static KeyObject GetDictionaryValue(Actions action)
+        private static KeyObject GetDictionaryValue(KeyCode action)
         {
             return dictionary.GetValueOrDefault(action);
         }
 
         // Returns true if the key has been pressed this frame
-        public static bool GetKeyDown(Actions action)
+        public static bool GetKeyDown(KeyCode action)
         {
             if (GetDictionaryValue(action).timeHeld == 1)
             {
@@ -84,7 +84,7 @@ namespace Engine
         }
 
         // Returns true if the key is currently pressed
-        public static bool GetKey(Actions action)
+        public static bool GetKey(KeyCode action)
         {
             if (GetDictionaryValue(action).timeHeld > 0)
             {

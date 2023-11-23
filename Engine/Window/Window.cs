@@ -1,6 +1,9 @@
 ﻿using GLFW;
+using OpenGL;
 using System.Drawing;
 using static OpenGL.GL;
+
+// The Window static class deals with anything relating to the game window, such as resolution, windowed/fullsize, etc. and provides functions around creating, resizing, closing the window, plus others.
 
 namespace Engine
 {
@@ -96,13 +99,42 @@ namespace Engine
         public static void ResizeWindow(int width, int height)
         {
             windowSize = new Vector2(width, height);
-            SetWindowSize();
+            SetWindowSize2(width, height);
         }
 
         // Sets the window to the windowSize
         private static void SetWindowSize()
         {
             glViewport(0, 0, (int)windowSize.x, (int)windowSize.y);
+        }
+
+        // Testing only, potential replacement for the above
+        public static void SetWindowSize2(int width, int height)
+        {
+            // Calculate the proper aspect ratio to use based on window ratio
+            var ratioX = width / (float)windowSize.x;
+            var ratioY = height / (float)windowSize.y;
+            var ratio = ratioX < ratioY ? ratioX : ratioY;
+
+            // Calculate the width and height that the will be rendered to
+            var viewWidth = Convert.ToInt32(windowSize.x * ratio);
+            var viewHeight = Convert.ToInt32(windowSize.y * ratio);
+
+            // Calculate the position, which will apply proper "pillar" or "letterbox" 
+            var viewX = Convert.ToInt32((width - windowSize.x * ratio) / 2);
+            var viewY = Convert.ToInt32((height - windowSize.y * ratio) / 2);
+
+            glViewport(0, 0, (int)windowSize.x, (int)windowSize.y);
+        }
+
+        // Renders the window. Called every frame.
+        public static void Render()
+        {
+            glClear(GL_COLOR_BUFFER_BIT); // Clear the colour buffer
+            //glClear(GL_DEPTH_BUFFER_BIT); // Clear the depth buffer
+
+            Glfw.SwapBuffers(Window.window); // Swap fore/back framebuffers
+                                             //Seems to break frame rate/cause flickering? Note sure this should be done every frame
         }
     }
 }

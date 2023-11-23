@@ -2,6 +2,8 @@
 using System.Runtime.ConstrainedExecution;
 using System.Security;
 
+// The Maths class provides various mathematical functions.
+
 namespace Engine
 {
     public class Maths

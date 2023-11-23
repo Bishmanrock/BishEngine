@@ -3,6 +3,8 @@ using static OpenGL.GL;
 
 // Class to instantly instantiate a cube game object
 
+// This is a test script. I believing testing has now concluded and this can now be deleted
+
 namespace Engine
 {
     public class CubeTest2 : GameObject, IRenderable

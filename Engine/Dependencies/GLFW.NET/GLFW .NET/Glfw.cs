@@ -864,13 +864,10 @@ namespace GLFW
         ///     This function processes only those events that are already in the event queue and then returns immediately.
         ///     Processing events will cause the window and input callbacks associated with those events to be called.
         ///     <para>
-        ///         On some platforms, a window move, resize or menu operation will cause event processing to block. This is due
-        ///         to how event processing is designed on those platforms. You can use the window refresh callback to redraw the
-        ///         contents of your window when necessary during such operations.
+        ///         On some platforms, a window move, resize or menu operation will cause event processing to block. This is due to how event processing is designed on those platforms. You can use the window refresh callback to redraw the contents of your window when necessary during such operations.
         ///     </para>
         ///     <para>
-        ///         On some platforms, certain events are sent directly to the application without going through the event queue,
-        ///         causing callbacks to be called outside of a call to one of the event processing functions.
+        ///         On some platforms, certain events are sent directly to the application without going through the event queue, causing callbacks to be called outside of a call to one of the event processing functions.
         ///     </para>
         /// </summary>
         [DllImport(LIBRARY, EntryPoint = "glfwPollEvents", CallingConvention = CallingConvention.Cdecl)]

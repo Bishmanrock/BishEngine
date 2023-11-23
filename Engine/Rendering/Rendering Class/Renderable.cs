@@ -6,15 +6,15 @@ namespace Engine
 {
     public class Renderable
     {
-        public float[] vertices;
-        public uint[] indices;
+        private float[] vertices;
+        private uint[] indices;
         public Shader shader;
-        public uint vertexBufferObject;
+        private uint vertexBufferObject;
         public uint vertexArrayObject;
-        public uint elementBufferObject;
+        private uint elementBufferObject;
 
-        public Texture texture0;
-        public Texture texture1;
+        private Texture texture0;
+        private Texture texture1;
 
         public unsafe Renderable(float[] vert, uint[] ind, string tex0path, string tex1path)
         {

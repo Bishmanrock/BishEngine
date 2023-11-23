@@ -1,6 +1,10 @@
 ﻿using GLFW;
 using static OpenGL.GL;
 
+// EngineMain acts as the engines main core, containing the main game loop. This is the class that a main game inherits from. 
+
+// There are multiple fields on here that could probably do with being refactored out into cleaner places. There are also some functionalities around times and FPS that would be better places elsewhere, or in the Time class.
+
 namespace Engine
 {
     public abstract class EngineMain
@@ -29,9 +33,12 @@ namespace Engine
             events = new List<Event>();
 
             Initialize();
+
             CreateWindow();
+
             LoadContent();
 
+            // This is the main game loop for the engine
             while (Glfw.WindowShouldClose(Window.window) == false)
             {
                 SetTimes();
@@ -41,22 +48,14 @@ namespace Engine
                 Inputs();
                 Events();
                 Update();
-                Glfw.PollEvents(); // Poll for operating system events, such as keyboard or mouse input evemts
 
-                //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-                Glfw.SwapBuffers(Window.window); // Swap fore/back framebuffers
-                                                 //Seems to break frame rate/cause flickering? Note sure this should be done every frame
+                Glfw.PollEvents(); // Poll for operating system events, such as keyboard or mouse input events
 
-                glClear(GL_COLOR_BUFFER_BIT); // Clear the colour buffer
-                glClear(GL_DEPTH_BUFFER_BIT); // Clear the depth buffer
+                Window.Render();
 
                 Draw();
 
                 Window.DrawBackground();
-
-                //Glfw.SwapBuffers(DisplayManager.window); // Double buffer. Required to prevent flickering in windowed applications
-
-                CheckMouseState();
             }
 
             Window.CloseWindow();
@@ -76,6 +75,7 @@ namespace Engine
         public abstract void Update();
         public abstract void Draw();
 
+        // Creates the program window
         private void CreateWindow()
         {
             Console.WriteLine("Engine start");
@@ -144,11 +144,6 @@ namespace Engine
                 default:
                     return false;
             }
-        }
-
-        private void CheckMouseState()
-        {
-            bool mouseShouldBeGrabbed;
         }
     }
 }
