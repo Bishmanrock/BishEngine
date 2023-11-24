@@ -51,9 +51,9 @@ namespace Engine
                 Events();
                 Update();
 
-                Glfw.PollEvents(); // Poll for operating system events, such as keyboard or mouse input events
-
                 Window.Render();
+
+                Glfw.PollEvents(); // Poll for operating system events, such as keyboard or mouse input events
 
                 //RenderingManager.Draw(); // Not in full use yet so commented out
 

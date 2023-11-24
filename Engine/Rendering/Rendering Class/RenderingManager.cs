@@ -24,7 +24,7 @@ namespace Engine
             renderList.Remove(gameObject);
         }
 
-        // Cycles through all active GameObjects in the list and triggers their Draw functions
+        // Cycles through all active GameObjects in the list and triggers their Draw functions. In future this should be changed to instead go through anything with the IRenderable interface.
         public static void Draw()
         {
             foreach(GameObject gameObject in renderList)

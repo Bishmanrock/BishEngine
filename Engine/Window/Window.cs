@@ -130,11 +130,10 @@ namespace Engine
         // Renders the window. Called every frame.
         public static void Render()
         {
-            glClear(GL_COLOR_BUFFER_BIT); // Clear the colour buffer
-            //glClear(GL_DEPTH_BUFFER_BIT); // Clear the depth buffer
-
             Glfw.SwapBuffers(Window.window); // Swap fore/back framebuffers
-                                             //Seems to break frame rate/cause flickering? Note sure this should be done every frame
+
+            glClear(GL_COLOR_BUFFER_BIT); // Clear the colour buffer
+            glClear(GL_DEPTH_BUFFER_BIT); // Clear the depth buffer
         }
     }
 }

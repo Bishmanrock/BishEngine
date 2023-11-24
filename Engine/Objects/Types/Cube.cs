@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using static OpenGL.GL;
 
-// Class to instantly instantiate a cube game object
+// Class to instantly instantiate a cube GameObject
 
 namespace Engine
 {

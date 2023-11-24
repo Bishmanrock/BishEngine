@@ -14,7 +14,7 @@ namespace Engine
             SetActive(true);
         }
 
-        // Sets the active bool
+        // Sets the active bool and adds/removes object to the rendering manager based off if it's active or not
         public void SetActive(bool active)
         {
             isActive = active;
