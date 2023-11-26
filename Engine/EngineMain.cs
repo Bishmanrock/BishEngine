@@ -34,11 +34,18 @@ namespace Engine
 
             Initialize();
 
-            CreateWindow();
+            Console.WriteLine("Engine start");
+
+            Window.CreateWindow(initialWindowWidth, initialWindowHeight, initialWindowName);
 
             LoadContent();
 
             RenderingManager.StartRenderingManager();
+
+            //glEnable(GL_CULL_FACE); // Enable face culling
+            //glCullFace(GL_BACK); // Cull (don't render) the backs of faces
+
+            glEnable(GL_DEPTH_TEST);
 
             // This is the main game loop for the engine
             while (Glfw.WindowShouldClose(Window.window) == false)
@@ -51,13 +58,15 @@ namespace Engine
                 Events();
                 Update();
 
-                Window.Render();
-
                 Glfw.PollEvents(); // Poll for operating system events, such as keyboard or mouse input events
 
                 //RenderingManager.Draw(); // Not in full use yet so commented out
 
+                glClear(GL_COLOR_BUFFER_BIT); // Clear the colour buffer
+
                 Draw();
+
+                Glfw.SwapBuffers(Window.window); // Swap fore/back framebuffers
 
                 Window.DrawBackground();
             }
@@ -78,14 +87,6 @@ namespace Engine
         public abstract void LoadContent();
         public abstract void Update();
         public abstract void Draw();
-
-        // Creates the program window
-        private void CreateWindow()
-        {
-            Console.WriteLine("Engine start");
-
-            Window.CreateWindow(initialWindowWidth, initialWindowHeight, initialWindowName);
-        }
 
         private void SetTimes()
         {

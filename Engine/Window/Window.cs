@@ -14,6 +14,7 @@ namespace Engine
 
         private static Vector4 backgroundColour;
 
+        // Creates the application window
         public static void CreateWindow(int width, int height, string title)
         {
             windowSize = new Vector2(width, height);
@@ -43,6 +44,8 @@ namespace Engine
 
             SetWindowSize();
             EnableVsync(false);
+
+            Glfw.SetWindowSizeCallback(window, WindowSizeCallback);
 
             Glfw.SetFramebufferSizeCallback(window, FramebufferSizeCallback);
         }
@@ -82,6 +85,13 @@ namespace Engine
         private static void FramebufferSizeCallback(GLFW.Window window, int width, int height)
         {
             // This call back is registered in the CreateWindow() function, and is triggered whenever the window is resized, stretching the window to the new width and height
+            glViewport(0, 0, width, height);
+        }
+
+        // Event used for resizing the window
+        private static void WindowSizeCallback(GLFW.Window window, int width, int height)
+        {
+            Console.Write("Window resize");
             glViewport(0, 0, width, height);
         }
 
