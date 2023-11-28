@@ -4,7 +4,7 @@
 
 namespace Engine
 {
-    interface IRenderable
+    public interface IRenderable
     {
         public Renderable renderData { get; }
     }

@@ -18,7 +18,6 @@ namespace Engine
         {
             CameraManager.activeCamera = this; // Sets this as the primary camera
 
-
             // For the view, we don't do too much here. Next tutorial will be all about a Camera class that will make it much easier to manipulate the view.
             // For now, we move it backwards three units on the Z axis.
             _view = Matrix4x4.CreateTranslation(0.0f, 0.0f, -3.0f);
@@ -37,7 +36,7 @@ namespace Engine
 
         public Matrix4x4 GetView()
         {
-            Console.WriteLine("Getting view");
+            //Console.WriteLine("Getting view");
             return _view;
         }
 

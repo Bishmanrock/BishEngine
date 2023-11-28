@@ -6,11 +6,13 @@ namespace Engine
     {
         public static Camera activeCamera { get; set; }
 
+        // Sets the provided camera as the active camera
         public static void SetActiveCamera(Camera camera)
         {
             activeCamera = camera;
         }
 
+        // Returns the currently active camera
         public static Camera GetActiveCamera()
         {
             return activeCamera;

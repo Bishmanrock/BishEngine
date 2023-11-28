@@ -11,6 +11,8 @@ public class Sandbox : EngineMain
 
     Cube ball;
 
+    Quad text;
+
     private float ballSpeed = 0.1f;
 
     // We create a double to hold how long has passed since the program was opened.
@@ -28,6 +30,8 @@ public class Sandbox : EngineMain
 
         rightPaddle = new Cube();
         rightPaddle.transform.SetPosition(new Vector3(1, 0, 0));
+
+        text = new Quad();
 
         ball = new Cube();
         ball.transform.SetScale(new Vector3(0.1f, 0.1f, 0.1f));
@@ -64,6 +68,7 @@ public class Sandbox : EngineMain
         leftPaddle.Draw();
         rightPaddle.Draw();
         ball.Draw();
+        text.Draw();
 
         //SwapBuffers();
     }

@@ -56,22 +56,35 @@ namespace Engine
             glEnableVertexAttribArray((uint)texCoordLocation);
             glVertexAttribPointer((uint)texCoordLocation, 2, GL_FLOAT, false, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 
-            texture0 = Texture.LoadFromFile(tex0path);
-            texture1 = Texture.LoadFromFile(tex1path);
+            if (tex0path != null)
+            {
+                texture0 = Texture.LoadFromFile(tex0path);
+            }
+            
+            if (tex1path != null)
+            {
+                texture1 = Texture.LoadFromFile(tex1path);
+            }
 
-            texture0.Use(GL_TEXTURE0);
-            texture1.Use(GL_TEXTURE1);
+            if (tex0path != null)
+            {
+                texture0.Use(GL_TEXTURE0);
+                shader.SetInt("texture0", 0);
+            }
 
-            shader.SetInt("texture0", 0);
-            shader.SetInt("texture1", 1);
+            if (tex1path != null)
+            {
+                texture1.Use(GL_TEXTURE1);
+                shader.SetInt("texture1", 1);
+            }
 
             shader.Use();
         }
-
-        public void SetTexture0(string path)
+        
+        // Sets a texture layer
+        public void SetTexture()
         {
-            texture1.Use(GL_TEXTURE0);
-            shader.SetInt("texture0", 0);
+
         }
     }
 }

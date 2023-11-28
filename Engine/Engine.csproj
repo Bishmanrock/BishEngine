@@ -9,6 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="System\.NET\Maths.cs" />
+    <Compile Include="System\.NET\Matrix4x4.cs" />
+    <Compile Include="System\.NET\Quaternion.cs" />
+    <Compile Include="System\.NET\Vectors\Vector2.cs" />
+    <Compile Include="System\.NET\Vectors\Vector3.cs" />
+    <Compile Include="System\.NET\Vectors\Vector4.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GlmSharp\GlmSharp.csproj" />
   </ItemGroup>
 

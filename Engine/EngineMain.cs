@@ -50,7 +50,7 @@ namespace Engine
             // This is the main game loop for the engine
             while (Glfw.WindowShouldClose(Window.window) == false)
             {
-                SetTimes();
+                Time.Update();
 
                 KeyDictionary.CheckInputs();
 
@@ -87,15 +87,6 @@ namespace Engine
         public abstract void LoadContent();
         public abstract void Update();
         public abstract void Draw();
-
-        private void SetTimes()
-        {
-            // Sets the relevant timers in Time
-
-            Time.deltaTime = (float)Glfw.Time - Time.time;
-
-            Time.time = (float)Glfw.Time;
-        }
 
         private void Events()
         {

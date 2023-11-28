@@ -575,7 +575,7 @@ namespace GLFW
         ///     limits.
         /// </remarks>
         [DllImport(LIBRARY, EntryPoint = "glfwSetWindowPos", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetWindowPosition(Window window, int x, int y);
+        public static extern void SetWindowPosition(IntPtr window, int x, int y);
 
         /// <summary>
         ///     This function retrieves the size, in screen coordinates, of the client area of the specified window.
@@ -762,7 +762,7 @@ namespace GLFW
         /// </summary>
         /// <param name="window">A window instance.</param>
         [DllImport(LIBRARY, EntryPoint = "glfwMakeContextCurrent", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void MakeContextCurrent(Window window);
+        public static extern void MakeContextCurrent(IntPtr window);
 
         /// <summary>
         ///     This function swaps the front and back buffers of the specified window when rendering with OpenGL or OpenGL ES.
@@ -774,7 +774,7 @@ namespace GLFW
         /// </summary>
         /// <param name="window">A window instance.</param>
         [DllImport(LIBRARY, EntryPoint = "glfwSwapBuffers", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SwapBuffers(Window window);
+        public static extern void SwapBuffers(IntPtr window);
 
         /// <summary>
         ///     Sets the swap interval for the current OpenGL or OpenGL ES context, i.e. the number of screen updates
@@ -817,7 +817,7 @@ namespace GLFW
         /// <param name="window">A window instance.</param>
         /// <returns><c>true</c> if close flag is present; otherwise <c>false</c>.</returns>
         [DllImport(LIBRARY, EntryPoint = "glfwWindowShouldClose", CallingConvention = CallingConvention.Cdecl)]
-        public static extern bool WindowShouldClose(Window window);
+        public static extern bool WindowShouldClose(IntPtr window);
 
         /// <summary>
         ///     Sets the value of the close flag of the specified window.
@@ -826,7 +826,7 @@ namespace GLFW
         /// <param name="window">A window instance.</param>
         /// <param name="close"><c>true</c> to set close flag, or <c>false</c> to cancel flag.</param>
         [DllImport(LIBRARY, EntryPoint = "glfwSetWindowShouldClose", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SetWindowShouldClose(Window window, bool close);
+        public static extern void SetWindowShouldClose(IntPtr window, bool close);
 
         /// <summary>
         ///     Sets the icon of the specified window. If passed an array of candidate images, those of or closest to
@@ -1294,7 +1294,7 @@ namespace GLFW
         /// <param name="key">The key to query.</param>
         /// <returns>Either <see cref="InputState.Press" /> or <see cref="InputState.Release" />.</returns>
         [DllImport(LIBRARY, EntryPoint = "glfwGetKey", CallingConvention = CallingConvention.Cdecl)]
-        public static extern InputState GetKey(Window window, Keys key);
+        public static extern InputState GetKey(IntPtr window, Keys key);
 
         [DllImport(LIBRARY, EntryPoint = "glfwGetKeyName", CallingConvention = CallingConvention.Cdecl)]
         private static extern IntPtr GetKeyNameInternal(Keys key, int scanCode);
@@ -1308,7 +1308,7 @@ namespace GLFW
         /// <returns>The previously set callback, or <c>null</c> if no callback was set or the library had not been initialized.</returns>
         [DllImport(LIBRARY, EntryPoint = "glfwSetFramebufferSizeCallback", CallingConvention = CallingConvention.Cdecl)]
         [return: MarshalAs(UnmanagedType.FunctionPtr, MarshalTypeRef = typeof(SizeCallback))]
-        public static extern SizeCallback SetFramebufferSizeCallback(Window window, SizeCallback sizeCallback);
+        public static extern SizeCallback SetFramebufferSizeCallback(IntPtr window, SizeCallback sizeCallback);
 
         /// <summary>
         ///     Sets the refresh callback of the specified window, which is called when the client area of the window

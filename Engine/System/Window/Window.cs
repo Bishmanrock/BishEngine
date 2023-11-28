@@ -9,10 +9,14 @@ namespace Engine
 {
     public static class Window
     {
-        public static GLFW.Window window { get; set; }
+        public static IntPtr window { get; set; }
         public static Vector2 windowSize { get; set; }
 
         private static Vector4 backgroundColour;
+
+        //public static Action<GLFW.Window, int, int> WindowSizeCallbackDelegate;
+
+        private static GLFW.SizeCallback sizeCallback; // The callback for window resize
 
         // Creates the application window
         public static void CreateWindow(int width, int height, string title)
@@ -45,9 +49,22 @@ namespace Engine
             SetWindowSize();
             EnableVsync(false);
 
-            Glfw.SetWindowSizeCallback(window, WindowSizeCallback);
+
+            //WindowSizeCallbackDelegate = new Action<GLFW.Window, int, int>(WindowSizeCallback);
+
+            sizeCallback = OnWindowSizeChanged;
+            Glfw.SetFramebufferSizeCallback(window, sizeCallback);
+
+            //Glfw.SetWindowSizeCallback(window, WindowSizeCallbackDelegate);
+
+
 
             Glfw.SetFramebufferSizeCallback(window, FramebufferSizeCallback);
+        }
+
+        private static void OnWindowSizeChanged(GLFW.Window window, int width, int height)
+        {
+            // Handle window size change
         }
 
         public static void CloseWindow()
@@ -84,12 +101,13 @@ namespace Engine
 
         private static void FramebufferSizeCallback(GLFW.Window window, int width, int height)
         {
+            Console.Write("Framebuffersizecallback");
             // This call back is registered in the CreateWindow() function, and is triggered whenever the window is resized, stretching the window to the new width and height
             glViewport(0, 0, width, height);
         }
 
         // Event used for resizing the window
-        private static void WindowSizeCallback(GLFW.Window window, int width, int height)
+        public static void WindowSizeCallback(GLFW.Window window, int width, int height)
         {
             Console.Write("Window resize");
             glViewport(0, 0, width, height);

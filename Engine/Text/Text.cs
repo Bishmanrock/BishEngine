@@ -4,13 +4,13 @@
 
 namespace Engine
 {
-    public class Cube : GameObject, IRenderable
+    public class Text : GameObject, IRenderable
     {
         public Renderable renderData { get; }
 
         // Why are so many vertcies needed for a cube??
-            private readonly float[] _vertices =
-        {
+        private readonly float[] _vertices =
+    {
         -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
          0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
          0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
@@ -60,9 +60,9 @@ namespace Engine
             1, 2, 3
         };
 
-        public Cube()
+        public unsafe Text()
         {
-            renderData = new Renderable(_vertices, _indices, "F:\\GameDev\\.Engine\\Engine\\Sandbox Application\\Texture\\Untitled.png", "F:\\GameDev\\.Engine\\Engine\\Sandbox Application\\Texture\\awesomeface.png");       
+            renderData = new Renderable(_vertices, _indices, "F:\\GameDev\\.Engine\\Engine\\Engine\\Graphics\\Fonts\\Font - System 16x16.png", "F:\\GameDev\\.Engine\\Engine\\Engine\\Graphics\\Fonts\\Font - System 16x16.png");
         }
 
         public Shader GetShader()
