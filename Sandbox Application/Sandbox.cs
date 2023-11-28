@@ -7,7 +7,7 @@ public class Sandbox : EngineMain
 {
     Camera camera;
     Cube leftPaddle;
-    Cube rightPaddle;
+    Cube2 rightPaddle;
 
     Cube ball;
 
@@ -28,7 +28,7 @@ public class Sandbox : EngineMain
         leftPaddle = new Cube();
         leftPaddle.transform.SetPosition(new Vector3(-1, 0, 0));
 
-        rightPaddle = new Cube();
+        rightPaddle = new Cube2();
         rightPaddle.transform.SetPosition(new Vector3(1, 0, 0));
 
         text = new Quad();
