@@ -8,6 +8,8 @@ namespace Engine
     {
         public Renderable renderData { get; }
 
+        Mesh mesh;
+
         // Why are so many vertcies needed for a cube??
         private readonly float[] _vertices =
     {

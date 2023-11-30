@@ -1,4 +1,5 @@
-﻿using static OpenGL.GL;
+﻿using System.Net.Http.Headers;
+using static OpenGL.GL;
 
 // Class to instantly instantiate a cube GameObject
 
@@ -8,51 +9,8 @@ namespace Engine
     {
         public Renderable renderData { get; }
 
-        // Why are so many vertcies needed for a cube??
-            private readonly float[] _vertices =
-        {
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-         0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-            };
+        private Mesh mesh;
+        public Collider collider;
 
         private readonly uint[] _indices =
         {
@@ -62,7 +20,12 @@ namespace Engine
 
         public Cube()
         {
-            renderData = new Renderable(_vertices, _indices, "F:\\GameDev\\.Engine\\Engine\\Sandbox Application\\Texture\\Untitled.png", "F:\\GameDev\\.Engine\\Engine\\Sandbox Application\\Texture\\awesomeface.png");       
+            mesh = new MeshCube();
+
+            collider = new Collider(this);
+            collider.SetVertices(mesh.GetMeshVertices());
+
+            renderData = new Renderable(mesh.GetMeshVertices(), _indices, "F:\\GameDev\\.Engine\\Engine\\Sandbox Application\\Texture\\Untitled.png", "F:\\GameDev\\.Engine\\Engine\\Sandbox Application\\Texture\\awesomeface.png");       
         }
 
         public Shader GetShader()
@@ -103,8 +66,8 @@ namespace Engine
         private Matrix4x4 TransformToModel(Transform transform)
         {
             return Matrix4x4.CreateRotationX(transform.rotation.x) *
-                Matrix4x4.CreateRotationX(transform.rotation.y) *
-                 Matrix4x4.CreateRotationX(transform.rotation.z) *
+                Matrix4x4.CreateRotationY(transform.rotation.y) *
+                 Matrix4x4.CreateRotationZ(transform.rotation.z) *
                 Matrix4x4.CreateScale(transform.scale) *
                  Matrix4x4.CreateTranslation(transform.position.x, transform.position.y, transform.position.z);
         }
