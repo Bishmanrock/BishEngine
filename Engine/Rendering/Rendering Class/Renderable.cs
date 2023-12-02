@@ -68,23 +68,29 @@ namespace Engine
 
             if (tex0path != null)
             {
-                texture0.Use(GL_TEXTURE0);
                 shader.SetInt("texture0", 0);
             }
 
             if (tex1path != null)
             {
-                texture1.Use(GL_TEXTURE1);
                 shader.SetInt("texture1", 1);
             }
-
-            shader.Use();
         }
         
         // Sets a texture layer
         public void SetTexture()
         {
 
+        }
+
+        public void Draw()
+        {
+            shader.Use();
+            glBindVertexArray(vertexArrayObject);
+            //glBindTexture();
+
+            texture0.Use(GL_TEXTURE0);
+            texture1.Use(GL_TEXTURE1);
         }
     }
 }

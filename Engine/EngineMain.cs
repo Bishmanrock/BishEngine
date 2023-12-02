@@ -63,13 +63,12 @@ namespace Engine
 
                 Glfw.PollEvents(); // Poll for operating system events, such as keyboard or mouse input events
 
-                //RenderingManager.Draw(); // Not in full use yet so commented out
+                RenderingManager.Draw(); // Not in full use yet
 
                 // We clear the depth buffer in addition to the color buffer.
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
                 Draw();
-
 
                 Glfw.SwapBuffers(Window.window); // Swap fore/back framebuffers
 

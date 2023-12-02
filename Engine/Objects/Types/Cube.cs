@@ -56,6 +56,8 @@ namespace Engine
             glBindVertexArray(renderData.vertexArrayObject);
 
             glDrawArrays(GL_TRIANGLES, 0, 36);
+
+            renderData.Draw();
         }
 
         /// <summary>
