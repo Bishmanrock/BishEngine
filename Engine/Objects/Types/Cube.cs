@@ -25,7 +25,7 @@ namespace Engine
             collider = new Collider(this);
             collider.SetVertices(mesh.GetMeshVertices());
 
-            renderData = new Renderable(mesh.GetMeshVertices(), _indices, "F:\\GameDev\\.Engine\\Engine\\Sandbox Application\\Texture\\Untitled.png", "F:\\GameDev\\.Engine\\Engine\\Sandbox Application\\Texture\\awesomeface.png");       
+            renderData = new Renderable(mesh.GetMeshVertices(), _indices, "F:\\GameDev\\.Engine\\Engine\\Sandbox Application\\Texture\\Untitled.png", "F:\\GameDev\\.Engine\\Engine\\Sandbox Application\\Texture\\awesomeface.png", this);       
         }
 
         public Shader GetShader()
@@ -33,8 +33,10 @@ namespace Engine
             return renderData.shader;
         }
 
-        public unsafe void Draw()
-        {
+
+        // THIS HAS NOW BEEN SUPERSEDED BY THE RENDERABLE CLASS
+        //public unsafe void Draw()
+        //{
             // Then, we pass all of these matrices to the vertex shader.
             // You could also multiply them here and then pass, which is faster, but having the separate matrices available is used for some advanced effects.
 
@@ -49,29 +51,15 @@ namespace Engine
 
 
             //shader.SetMatrix4("model", model);
-            renderData.shader.SetMatrix4("model", TransformToModel(transform));
-            renderData.shader.SetMatrix4("view", CameraManager.activeCamera.GetView());
-            renderData.shader.SetMatrix4("projection", CameraManager.activeCamera.GetProjection());
+            //renderData.shader.SetMatrix4("model", TransformToModel(transform));
+            //renderData.shader.SetMatrix4("view", CameraManager.activeCamera.GetView());
+            //renderData.shader.SetMatrix4("projection", CameraManager.activeCamera.GetProjection());
 
-            glBindVertexArray(renderData.vertexArrayObject);
+            //glBindVertexArray(renderData.vertexArrayObject);
 
-            glDrawArrays(GL_TRIANGLES, 0, 36);
+            //glDrawArrays(GL_TRIANGLES, 0, 36);
 
-            renderData.Draw();
-        }
-
-        /// <summary>
-        /// Creates the matrix which transforms vertex positions into world positions.
-        /// </summary>
-        /// <param name="transform"></param>
-        /// <returns>The transformation matrix.</returns>
-        private Matrix4x4 TransformToModel(Transform transform)
-        {
-            return Matrix4x4.CreateRotationX(transform.rotation.x) *
-                Matrix4x4.CreateRotationY(transform.rotation.y) *
-                 Matrix4x4.CreateRotationZ(transform.rotation.z) *
-                Matrix4x4.CreateScale(transform.scale) *
-                 Matrix4x4.CreateTranslation(transform.position.x, transform.position.y, transform.position.z);
-        }
+            //renderData.Draw();
+        //}
     }
 }

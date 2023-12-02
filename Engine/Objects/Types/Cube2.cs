@@ -20,7 +20,7 @@ namespace Engine
         {
             mesh = new MeshCube();
 
-            renderData = new Renderable(mesh.GetMeshVertices(), _indices, "F:\\GameDev\\.Engine\\Engine\\Engine\\Graphics\\Fonts\\Font - System 16x16.png", null);       
+            renderData = new Renderable(mesh.GetMeshVertices(), _indices, "F:\\GameDev\\.Engine\\Engine\\Engine\\Graphics\\Fonts\\Font - System 16x16.png", null, this);       
         }
 
         public Shader GetShader()

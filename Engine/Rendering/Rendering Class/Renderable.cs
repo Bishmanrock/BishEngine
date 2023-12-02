@@ -1,6 +1,6 @@
 ﻿using static OpenGL.GL;
 
-// Contains data for use with the IRenderable interface
+// Contains data for use with the IRenderable interface. The RenderingManager uses this every Draw call.
 
 namespace Engine
 {
@@ -12,12 +12,14 @@ namespace Engine
         private uint vertexBufferObject;
         public uint vertexArrayObject;
         private uint elementBufferObject;
+        private GameObject gameObject;
 
         private Texture texture0;
         private Texture texture1;
 
-        public unsafe Renderable(float[] vert, uint[] ind, string tex0path, string tex1path)
+        public unsafe Renderable(float[] vert, uint[] ind, string tex0path, string tex1path, GameObject gameObject)
         {
+            this.gameObject = gameObject;
             vertices = vert;
             indices = ind;
 
@@ -46,7 +48,6 @@ namespace Engine
             }
 
             shader = new Shader(ShaderType.TEMP_TRANSFORMATION);
-            shader.Use();
 
             var vertexLocation = shader.GetAttribLocation("aPosition");
             glEnableVertexAttribArray((uint)vertexLocation);
@@ -85,12 +86,21 @@ namespace Engine
 
         public void Draw()
         {
-            shader.Use();
+
+            //shader.Use();
             glBindVertexArray(vertexArrayObject);
             //glBindTexture();
 
+            //shader.SetMatrix4("model", model);
+            shader.SetMatrix4("model", gameObject.TransformToModel(gameObject.transform));
+            shader.SetMatrix4("view", CameraManager.activeCamera.GetView());
+            shader.SetMatrix4("projection", CameraManager.activeCamera.GetProjection());
+
+
             texture0.Use(GL_TEXTURE0);
             texture1.Use(GL_TEXTURE1);
+
+            glDrawArrays(GL_TRIANGLES, 0, vertices.Length); // Both GL_TRIANGLES and 36 should be dynamically provided, but at present the Renderable can't see the Cube to do so. Not so sure this should be held on the GameObject class either, as GameObject won't always necesarilly be something renderable, so not sure where this data should be held?
         }
     }
 }

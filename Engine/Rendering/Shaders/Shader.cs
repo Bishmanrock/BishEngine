@@ -245,6 +245,7 @@ namespace Engine
         {
             int shaderLocation = glGetUniformLocation(Handle, "colour");
             glUniform4f(shaderLocation, red, green, blue, alpha);
+            Use();
         }
 
         /// <summary>
@@ -315,6 +316,7 @@ namespace Engine
         {
             int location = glGetUniformLocation(Handle, uniformName);
             glUniformMatrix4fv(location, 1, false, GetMatrix4x4Values(mat));
+            Use();
         }
     }
 }

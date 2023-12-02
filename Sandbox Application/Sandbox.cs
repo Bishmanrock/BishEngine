@@ -123,9 +123,10 @@ public class Sandbox : EngineMain
 
         //glDrawElements(GL_TRIANGLES, _indices.Length, GL_UNSIGNED_INT, NULL);
 
-        leftPaddle.Draw();
-        rightPaddle.Draw();
-        ball.Draw();
+        // THIS IS NOW HANDLED BY THE RENDERABLE CLASS
+        //leftPaddle.Draw();
+        //rightPaddle.Draw();
+        //ball.Draw();
         //text.Draw();
 
         //SwapBuffers();
