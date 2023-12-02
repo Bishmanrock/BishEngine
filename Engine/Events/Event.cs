@@ -21,7 +21,7 @@ namespace Engine
 
         //public bool IsInCategory(EventCategory category)
         //{
-            //return GetCategoryFlags() & category;
-       // }
+        //return GetCategoryFlags() & category;
+        // }
     }
 }

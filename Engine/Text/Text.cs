@@ -64,7 +64,9 @@ namespace Engine
 
         public unsafe Text()
         {
-            renderData = new Renderable(_vertices, _indices, "F:\\GameDev\\.Engine\\Engine\\Engine\\Graphics\\Fonts\\Font - System 16x16.png", "F:\\GameDev\\.Engine\\Engine\\Engine\\Graphics\\Fonts\\Font - System 16x16.png", this);
+            //renderData = new Renderable(_vertices, _indices, "F:\\GameDev\\.Engine\\Engine\\Engine\\Graphics\\Fonts\\Font - System 16x16.png", "F:\\GameDev\\.Engine\\Engine\\Engine\\Graphics\\Fonts\\Font - System 16x16.png", this);
+
+            renderData = new Renderable(mesh.GetMeshVertices(), _indices, TextureManager.GetTexture("border"), TextureManager.GetTexture("dougFace"), this);
         }
 
         public Shader GetShader()

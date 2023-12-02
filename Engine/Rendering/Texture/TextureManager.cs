@@ -1,26 +1,34 @@
 ﻿using static OpenGL.GL;
 using StbImageSharp;
 
+// This manager holds a reference to all loaded textures in the game, so that they don't have to be reloaded every time
+
 namespace Engine
 {
-    public class Texture
+    public static class TextureManager
     {
-        public readonly uint Handle;
+        static Dictionary<string, Texture> textureDictionary = new Dictionary<string, Texture>();
 
-        // Converts a byte array to a IntPtr
-        public static IntPtr ConvertToIntPtr(byte[] array)
+        // Returns the Texture
+        public static Texture GetTexture(string name)
         {
-
-            using PinnedArray pinnedArray = new (array);
-
-            //GCHandle pinnedArray = GCHandle.Alloc(array, GCHandleType.Pinned); // Pin the array to prevent it from changing while running
-            IntPtr pointer = pinnedArray.Pointer;
-            //pinnedArray.Free(); // Free up the pinned array from memory
-
-            return pointer;
+            switch (textureDictionary.ContainsKey(name))
+            {
+                case true:
+                    return textureDictionary[name];
+                case false:
+                    Console.WriteLine($"Texture {name} was not present in the Texture Dictionary");
+                    return null;
+            }
         }
 
-        // Possible redundant with the TextureManager
+        // Generates a reference to the Texture internally. Means you don't have to use a filepath every time. For testing now, this can maybe later just be merged with LoadFromFile rather than spreading it across two functions, if there's no requirement for that to be seperate.
+        public static void AddTexture(string name, string location)
+        {
+            var tex = LoadFromFile(location);
+            textureDictionary.Add(name, tex);
+        }
+
         public static Texture LoadFromFile(string path)
         {
             // Generate handle
@@ -82,19 +90,17 @@ namespace Engine
             return new Texture(handle);
         }
 
-        public Texture(uint glHandle)
+        // Converts a byte array to a IntPtr
+        public static IntPtr ConvertToIntPtr(byte[] array)
         {
-            Handle = glHandle;
-        }
 
-        // Activate texture
-        // Multiple textures can be bound, if your shader needs more than just one.
-        // If you want to do that, use GL.ActiveTexture to set which slot GL.BindTexture binds to.
-        // The OpenGL standard requires that there be at least 16, but there can be more depending on your graphics card.
-        public void Use(int unit)
-        {
-            glActiveTexture(unit);
-            glBindTexture(GL_TEXTURE_2D, Handle);
+            using PinnedArray pinnedArray = new(array);
+
+            //GCHandle pinnedArray = GCHandle.Alloc(array, GCHandleType.Pinned); // Pin the array to prevent it from changing while running
+            IntPtr pointer = pinnedArray.Pointer;
+            //pinnedArray.Free(); // Free up the pinned array from memory
+
+            return pointer;
         }
     }
 }

@@ -6,12 +6,6 @@ namespace Engine
     {
         private static List<GameObject> renderList = new List<GameObject>();
 
-        // Sets up the rendering manager
-        public static void StartRenderingManager()
-        {
-
-        }
-
         // Adds a GameObject to the renderList
         public static void Add(GameObject gameObject)
         {
@@ -30,8 +24,6 @@ namespace Engine
             foreach(IRenderable renderable in renderList)
             {
                 renderable.renderData.Draw();
-
-                //gameObject.Draw();
             }
         }
     }

@@ -13,7 +13,7 @@ namespace Engine
 {
     public class Shader
     {
-        public readonly uint Handle;
+        public readonly uint Handle; // Also known as the ProgramID?
 
         private readonly Dictionary<string, int> _uniformLocations;
 

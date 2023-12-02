@@ -17,7 +17,10 @@ namespace Engine
         private Texture texture0;
         private Texture texture1;
 
-        public unsafe Renderable(float[] vert, uint[] ind, string tex0path, string tex1path, GameObject gameObject)
+        private List<Texture> textureList = new List<Texture>();
+
+        //public unsafe Renderable(float[] vert, uint[] ind, string tex0path, string tex1path, GameObject gameObject)
+        public unsafe Renderable(float[] vert, uint[] ind, Texture tex0path, Texture tex1path, GameObject gameObject)
         {
             this.gameObject = gameObject;
             vertices = vert;
@@ -57,37 +60,50 @@ namespace Engine
             glEnableVertexAttribArray((uint)texCoordLocation);
             glVertexAttribPointer((uint)texCoordLocation, 2, GL_FLOAT, false, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 
-            if (tex0path != null)
-            {
-                texture0 = Texture.LoadFromFile(tex0path);
-            }
-            
-            if (tex1path != null)
-            {
-                texture1 = Texture.LoadFromFile(tex1path);
-            }
+            SetTexture(tex0path, 0);
+            SetTexture(tex1path, 1);
 
             if (tex0path != null)
             {
-                shader.SetInt("texture0", 0);
+                texture0 = tex0path;
             }
 
             if (tex1path != null)
             {
-                shader.SetInt("texture1", 1);
+                texture1 = tex1path;
+            }
+
+            if (tex0path != null)
+            {
+                shader.SetInt("tex0path", 0);
+                //shader.SetInt(textureList[0].ToString(), 0);
+            }
+
+            if (tex1path != null)
+            {
+                shader.SetInt("tex1path", 1);
+                //shader.SetInt(textureList[1].ToString(), 1);
             }
         }
-        
+      
         // Sets a texture layer
-        public void SetTexture()
+        public void SetTexture(Texture texture, int layer)
         {
+            textureList.Insert(layer, texture); // Inserts the Texture at the specific index, which corresponds to the layer
+        }
 
+        private void ApplyTextureList()
+        {
+            foreach(Texture texture in textureList)
+            {
+                //shader.SetInt("texture1", 1);
+            }
         }
 
         public void Draw()
         {
+            if (gameObject.isActive == false) return;
 
-            //shader.Use();
             glBindVertexArray(vertexArrayObject);
             //glBindTexture();
 
@@ -96,11 +112,10 @@ namespace Engine
             shader.SetMatrix4("view", CameraManager.activeCamera.GetView());
             shader.SetMatrix4("projection", CameraManager.activeCamera.GetProjection());
 
-
             texture0.Use(GL_TEXTURE0);
             texture1.Use(GL_TEXTURE1);
 
-            glDrawArrays(GL_TRIANGLES, 0, vertices.Length); // Both GL_TRIANGLES and 36 should be dynamically provided, but at present the Renderable can't see the Cube to do so. Not so sure this should be held on the GameObject class either, as GameObject won't always necesarilly be something renderable, so not sure where this data should be held?
+            glDrawArrays(GL_TRIANGLES, 0, vertices.Length); // Works for now, but not so sure vertices.Length is correct. GL_TRIANGLES also needs to be dynamic if other values will be required.
         }
     }
 }

@@ -4,7 +4,7 @@ namespace Engine
 {
     public class Camera
     {
-        private CameraMode cameraMode = CameraMode.PERSPECTIVE;
+        private CameraMode cameraMode = CameraMode.PERSPECTIVE; // The camera mode. Either perspective or orthographic. Defaults to perspective.
 
         // Then, we create two matrices to hold our view and projection. They're initialized at the bottom of OnLoad.
         // The view matrix is what you might consider the "camera". It represents the current viewport in the window.
@@ -16,7 +16,7 @@ namespace Engine
 
         public Camera()
         {
-            CameraManager.activeCamera = this; // Sets this as the primary camera
+            CameraManager.activeCamera = this; // Sets this as the primary camera. This may need to be split out in future if creating multiple cameras at once.
 
             // For the view, we don't do too much here. Next tutorial will be all about a Camera class that will make it much easier to manipulate the view.
             // For now, we move it backwards three units on the Z axis.
@@ -36,7 +36,6 @@ namespace Engine
 
         public Matrix4x4 GetView()
         {
-            //Console.WriteLine("Getting view");
             return _view;
         }
 

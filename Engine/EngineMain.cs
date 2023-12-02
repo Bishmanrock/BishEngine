@@ -18,7 +18,7 @@ namespace Engine
 
         double currentTime = (float)Glfw.Time;
 
-        private WindowResizeEvent windowResizeEvent;
+        private Event windowResizeEvent;
 
         private int initialWindowWidth = 960;
         private int initialWindowHeight = 960;
@@ -40,8 +40,6 @@ namespace Engine
 
             LoadContent();
 
-            RenderingManager.StartRenderingManager();
-
             //glEnable(GL_CULL_FACE); // Enable face culling
             //glCullFace(GL_BACK); // Cull (don't render) the backs of faces
 
@@ -55,7 +53,8 @@ namespace Engine
                 KeyDictionary.CheckInputs();
 
                 Inputs();
-                Events();
+                //Events();
+                EventManager.Events();
 
                 CheckCollisions();
 

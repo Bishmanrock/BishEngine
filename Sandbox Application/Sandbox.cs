@@ -37,6 +37,10 @@ public class Sandbox : EngineMain
         StreamReader reader = null;
         StreamWriter writer = null;
 
+        TextureManager.AddTexture("dougFace", "F:\\GameDev\\.Engine\\Engine\\Sandbox Application\\Texture\\awesomeface.png");
+
+        TextureManager.AddTexture("border", "F:\\GameDev\\.Engine\\Engine\\Sandbox Application\\Texture\\Untitled.png");
+
         try
         {
             reader = new StreamReader("F:\\GameDev\\.Engine\\Engine\\Engine\\Outgoing\\Test.txt");

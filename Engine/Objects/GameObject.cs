@@ -6,7 +6,7 @@ namespace Engine
     {
         public Transform transform;
 
-        private bool isActive; // Whether the GameObject is active or not
+        public bool isActive; // Whether the GameObject is active or not
 
         public GameObject()
         {
