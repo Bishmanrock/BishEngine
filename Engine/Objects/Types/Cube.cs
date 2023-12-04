@@ -25,13 +25,10 @@ namespace Engine
             collider = new Collider(this);
             collider.SetVertices(mesh.GetMeshVertices());
 
-            renderData = new Renderable(mesh.GetMeshVertices(), _indices, TextureManager.GetTexture("border"), TextureManager.GetTexture("dougFace"), this);
+            renderData = new Renderable(mesh.GetMeshVertices(), _indices, this);
 
-
-
-
-
-            //renderData = new Renderable(mesh.GetMeshVertices(), _indices, "F:\\GameDev\\.Engine\\Engine\\Sandbox Application\\Texture\\Untitled.png", "F:\\GameDev\\.Engine\\Engine\\Sandbox Application\\Texture\\awesomeface.png", this);       
+            renderData.SetTexture(TextureManager.GetTexture("border"), 0);
+            renderData.SetTexture(TextureManager.GetTexture("dougFace"), 1);
         }
 
         public Shader GetShader()

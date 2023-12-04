@@ -1,4 +1,6 @@
-﻿using static OpenGL.GL;
+﻿using System.Reflection.Emit;
+using System.Reflection.Metadata;
+using static OpenGL.GL;
 
 // Contains data for use with the IRenderable interface. The RenderingManager uses this every Draw call.
 
@@ -20,7 +22,7 @@ namespace Engine
         private List<Texture> textureList = new List<Texture>();
 
         //public unsafe Renderable(float[] vert, uint[] ind, string tex0path, string tex1path, GameObject gameObject)
-        public unsafe Renderable(float[] vert, uint[] ind, Texture tex0path, Texture tex1path, GameObject gameObject)
+        public unsafe Renderable(float[] vert, uint[] ind, GameObject gameObject)
         {
             this.gameObject = gameObject;
             vertices = vert;
@@ -59,63 +61,77 @@ namespace Engine
             var texCoordLocation = shader.GetAttribLocation("aTexCoord");
             glEnableVertexAttribArray((uint)texCoordLocation);
             glVertexAttribPointer((uint)texCoordLocation, 2, GL_FLOAT, false, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-
-            SetTexture(tex0path, 0);
-            SetTexture(tex1path, 1);
-
-            if (tex0path != null)
-            {
-                texture0 = tex0path;
-            }
-
-            if (tex1path != null)
-            {
-                texture1 = tex1path;
-            }
-
-            if (tex0path != null)
-            {
-                shader.SetInt("tex0path", 0);
-                //shader.SetInt(textureList[0].ToString(), 0);
-            }
-
-            if (tex1path != null)
-            {
-                shader.SetInt("tex1path", 1);
-                //shader.SetInt(textureList[1].ToString(), 1);
-            }
         }
       
         // Sets a texture layer
         public void SetTexture(Texture texture, int layer)
         {
-            textureList.Insert(layer, texture); // Inserts the Texture at the specific index, which corresponds to the layer
-        }
+            string uniform = $"texture{layer}path";
 
-        private void ApplyTextureList()
-        {
-            foreach(Texture texture in textureList)
-            {
-                //shader.SetInt("texture1", 1);
-            }
+            shader.SetInt(uniform, layer);
+
+            textureList.Insert(layer, texture); // Inserts the Texture at the specific index, which corresponds to the layer
         }
 
         public void Draw()
         {
             if (gameObject.isActive == false) return;
 
-            glBindVertexArray(vertexArrayObject);
-            //glBindTexture();
+            shader.Use();
 
-            //shader.SetMatrix4("model", model);
+            glBindVertexArray(vertexArrayObject);
+
             shader.SetMatrix4("model", gameObject.TransformToModel(gameObject.transform));
             shader.SetMatrix4("view", CameraManager.activeCamera.GetView());
             shader.SetMatrix4("projection", CameraManager.activeCamera.GetProjection());
 
-            texture0.Use(GL_TEXTURE0);
-            texture1.Use(GL_TEXTURE1);
+            DrawTextureList();
 
             glDrawArrays(GL_TRIANGLES, 0, vertices.Length); // Works for now, but not so sure vertices.Length is correct. GL_TRIANGLES also needs to be dynamic if other values will be required.
+        }
+
+        // Cycles through every Texture in the textureList and sets them
+        // Activate texture
+        // Multiple textures can be bound, if your shader needs more than just one.
+        // If you want to do that, use GL.ActiveTexture to set which slot GL.BindTexture binds to.
+        // The OpenGL standard requires that there be at least 16, but there can be more depending on your graphics card.
+        private void DrawTextureList()
+        {
+            foreach (Texture texture in textureList)
+            {
+                int index = textureList.IndexOf(texture); // Gets the index of the texture
+
+                glActiveTexture(index);
+                glBindTexture(GL_TEXTURE_2D, texture.Handle);
+
+
+
+
+
+
+
+
+
+                // Ignore the below - working out to be deleted once confirmed above solution working
+
+                //glActiveTexture(index); // Set the active texture layer
+
+                // This needs refactoring, can't figure out how to dynamically set the GL_TEXTURE in a format that the function will accept. Won't accept string.
+                //if (index == 0)
+                //{
+                //texture.Use(GL_TEXTURE0);
+
+                //    glActiveTexture(index);
+                //     glBindTexture(GL_TEXTURE_2D, texture.Handle);
+                // }
+                //  else if (index == 1)
+                //  {
+                //texture.Use(GL_TEXTURE1);
+
+                //      glActiveTexture(index);
+                //       glBindTexture(GL_TEXTURE_2D, texture.Handle);
+                //   }
+            }
         }
     }
 }

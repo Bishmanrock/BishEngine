@@ -22,7 +22,7 @@ namespace Engine
 
             //renderData = new Renderable(mesh.GetMeshVertices(), _indices, "F:\\GameDev\\.Engine\\Engine\\Engine\\Graphics\\Fonts\\Font - System 16x16.png", null, this);       
 
-            renderData = new Renderable(mesh.GetMeshVertices(), _indices, TextureManager.GetTexture("border"), TextureManager.GetTexture("dougFace"), this);
+            renderData = new Renderable(mesh.GetMeshVertices(), _indices, this);
         }
 
         public Shader GetShader()
