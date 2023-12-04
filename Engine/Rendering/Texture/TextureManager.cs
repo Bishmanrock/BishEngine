@@ -25,7 +25,7 @@ namespace Engine
         // Generates a reference to the Texture internally. Means you don't have to use a filepath every time. For testing now, this can maybe later just be merged with LoadFromFile rather than spreading it across two functions, if there's no requirement for that to be seperate.
         public static void AddTexture(string name, string location)
         {
-            var tex = LoadFromFile(location);
+            Texture tex = LoadFromFile(location);
             textureDictionary.Add(name, tex);
         }
 

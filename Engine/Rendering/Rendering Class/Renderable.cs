@@ -70,6 +70,8 @@ namespace Engine
 
             shader.SetInt(uniform, layer);
 
+            shader.SetColor(0, 0, 0, 0.5f);
+
             textureList.Insert(layer, texture); // Inserts the Texture at the specific index, which corresponds to the layer
         }
 
@@ -101,36 +103,8 @@ namespace Engine
             {
                 int index = textureList.IndexOf(texture); // Gets the index of the texture
 
-                glActiveTexture(index);
+                glActiveTexture(GL_TEXTURE0 + index);
                 glBindTexture(GL_TEXTURE_2D, texture.Handle);
-
-
-
-
-
-
-
-
-
-                // Ignore the below - working out to be deleted once confirmed above solution working
-
-                //glActiveTexture(index); // Set the active texture layer
-
-                // This needs refactoring, can't figure out how to dynamically set the GL_TEXTURE in a format that the function will accept. Won't accept string.
-                //if (index == 0)
-                //{
-                //texture.Use(GL_TEXTURE0);
-
-                //    glActiveTexture(index);
-                //     glBindTexture(GL_TEXTURE_2D, texture.Handle);
-                // }
-                //  else if (index == 1)
-                //  {
-                //texture.Use(GL_TEXTURE1);
-
-                //      glActiveTexture(index);
-                //       glBindTexture(GL_TEXTURE_2D, texture.Handle);
-                //   }
             }
         }
     }

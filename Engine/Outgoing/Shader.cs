@@ -49,7 +49,7 @@ namespace Engine
 
             // Cleanup
             DeleteShader(vertexShader);
-            DeleteShader(vertexShader);
+            DeleteShader(fragmentShader);
 
             //
         }
