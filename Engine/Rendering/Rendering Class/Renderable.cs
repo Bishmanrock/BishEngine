@@ -16,20 +16,13 @@ namespace Engine
         private uint elementBufferObject;
         private GameObject gameObject;
 
-        private Texture texture0;
-        private Texture texture1;
-
-        private List<Texture> textureList = new List<Texture>();
-
         private Texture[] textureArray = new Texture[2];
 
-        //public unsafe Renderable(float[] vert, uint[] ind, string tex0path, string tex1path, GameObject gameObject)
         public unsafe Renderable(float[] vert, uint[] ind, GameObject gameObject)
         {
             this.gameObject = gameObject;
             vertices = vert;
             indices = ind;
-
 
             vertexArrayObject = glGenVertexArray();
             glBindVertexArray(vertexArrayObject);
@@ -67,8 +60,6 @@ namespace Engine
             string uniform = $"texture{layer}path";
 
             shader.SetInt(uniform, layer);
-
-            textureList.Insert(layer, texture); // Inserts the Texture at the specific index, which corresponds to the layer
 
             textureArray[layer] = texture; // Inserts the Texture at the specific index, which corresponds to the layer
         }

@@ -13,11 +13,6 @@ namespace Engine
         private const int targetFrameTime = 1000 / targetFPS;
         private static bool isRunning = false;
 
-        double t = 0.0;
-        double dt = 1.0 / 60.0;
-
-        double currentTime = (float)Glfw.Time;
-
         private Event windowResizeEvent;
 
         private int initialWindowWidth = 960;

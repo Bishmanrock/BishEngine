@@ -1,7 +1,6 @@
 ﻿// The Time class provides various fields to track application running time or frame times.
 
 using GLFW;
-using System.Diagnostics;
 
 namespace Engine
 {
