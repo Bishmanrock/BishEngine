@@ -43,7 +43,9 @@ namespace Engine
             //glEnable(GL_CULL_FACE); // Enable face culling
             //glCullFace(GL_BACK); // Cull (don't render) the backs of faces
 
-            glEnable(GL_DEPTH_TEST);
+            // We enable depth testing here. If you try to draw something more complex than one plane without this,
+            // you'll notice that polygons further in the background will occasionally be drawn over the top of the ones in the foreground.
+            // Obviously, we don't want this, so we enable depth testing. We also clear the depth buffer in GL.Clear over in OnRenderFrame.
             glEnable(GL_DEPTH_TEST);
 
             // This is the main game loop for the engine
