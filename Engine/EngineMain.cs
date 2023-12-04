@@ -44,6 +44,7 @@ namespace Engine
             //glCullFace(GL_BACK); // Cull (don't render) the backs of faces
 
             glEnable(GL_DEPTH_TEST);
+            glEnable(GL_DEPTH_TEST);
 
             // This is the main game loop for the engine
             while (Glfw.WindowShouldClose(Window.window) == false)

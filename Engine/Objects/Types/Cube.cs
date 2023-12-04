@@ -29,6 +29,9 @@ namespace Engine
 
             renderData.SetTexture(TextureManager.GetTexture("border"), 0);
             renderData.SetTexture(TextureManager.GetTexture("dougFace"), 1);
+
+            //renderData.SetTexture(TextureManager.GetTexture("dougFace"), 0);
+            //renderData.SetTexture(TextureManager.GetTexture("border"), 1);
         }
 
         public Shader GetShader()

@@ -21,6 +21,8 @@ namespace Engine
 
         private List<Texture> textureList = new List<Texture>();
 
+        private Texture[] textureArray = new Texture[2];
+
         //public unsafe Renderable(float[] vert, uint[] ind, string tex0path, string tex1path, GameObject gameObject)
         public unsafe Renderable(float[] vert, uint[] ind, GameObject gameObject)
         {
@@ -31,7 +33,7 @@ namespace Engine
             // We enable depth testing here. If you try to draw something more complex than one plane without this,
             // you'll notice that polygons further in the background will occasionally be drawn over the top of the ones in the foreground.
             // Obviously, we don't want this, so we enable depth testing. We also clear the depth buffer in GL.Clear over in OnRenderFrame.
-            //glEnable(GL_DEPTH_TEST);
+            glEnable(GL_DEPTH_TEST);
 
             vertexArrayObject = glGenVertexArray();
             glBindVertexArray(vertexArrayObject);
@@ -70,9 +72,9 @@ namespace Engine
 
             shader.SetInt(uniform, layer);
 
-            shader.SetColor(0, 0, 0, 0.5f);
-
             textureList.Insert(layer, texture); // Inserts the Texture at the specific index, which corresponds to the layer
+
+            textureArray[layer] = texture; // Inserts the Texture at the specific index, which corresponds to the layer
         }
 
         public void Draw()
@@ -81,7 +83,7 @@ namespace Engine
 
             shader.Use();
 
-
+            glBindVertexArray(vertexArrayObject);
 
             shader.SetMatrix4("model", gameObject.TransformToModel(gameObject.transform));
             shader.SetMatrix4("view", CameraManager.activeCamera.GetView());
@@ -89,9 +91,7 @@ namespace Engine
 
             DrawTextureList();
 
-            glBindVertexArray(vertexArrayObject);
-
-            glDrawArrays(GL_TRIANGLES, 0, vertices.Length); // Works for now, but not so sure vertices.Length is correct. GL_TRIANGLES also needs to be dynamic if other values will be required.
+            glDrawArrays(GL_TRIANGLES, 0, vertices.Length/5); // Works for now, but not so sure vertices.Length is correct. GL_TRIANGLES also needs to be dynamic if other values will be required.
         }
 
         // Cycles through every Texture in the textureList and sets them
@@ -101,9 +101,12 @@ namespace Engine
         // The OpenGL standard requires that there be at least 16, but there can be more depending on your graphics card.
         private void DrawTextureList()
         {
-            foreach (Texture texture in textureList)
+            //foreach (Texture texture in textureList)
+            foreach (Texture texture in textureArray)
             {
-                int index = textureList.IndexOf(texture); // Gets the index of the texture
+                //int index = textureList.IndexOf(texture); // Gets the index of the texture
+
+                int index = Array.IndexOf(textureArray, texture);
 
                 glActiveTexture(GL_TEXTURE0 + index);
                 glBindTexture(GL_TEXTURE_2D, texture.Handle);
