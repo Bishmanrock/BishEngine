@@ -81,13 +81,15 @@ namespace Engine
 
             shader.Use();
 
-            glBindVertexArray(vertexArrayObject);
+
 
             shader.SetMatrix4("model", gameObject.TransformToModel(gameObject.transform));
             shader.SetMatrix4("view", CameraManager.activeCamera.GetView());
             shader.SetMatrix4("projection", CameraManager.activeCamera.GetProjection());
 
             DrawTextureList();
+
+            glBindVertexArray(vertexArrayObject);
 
             glDrawArrays(GL_TRIANGLES, 0, vertices.Length); // Works for now, but not so sure vertices.Length is correct. GL_TRIANGLES also needs to be dynamic if other values will be required.
         }
