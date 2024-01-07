@@ -43,7 +43,7 @@ namespace Engine
                 glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.Length * sizeof(uint), i, GL_STATIC_DRAW);
             }
 
-            shader = new Shader(ShaderType.TEMP_TRANSFORMATION);
+            shader = new Shader(ShaderType.STANDARD);
 
             var vertexLocation = shader.GetAttribLocation("aPosition");
             glEnableVertexAttribArray((uint)vertexLocation);

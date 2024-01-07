@@ -34,87 +34,9 @@ namespace Engine
 
             if (type == ShaderType.STANDARD)
             {
-                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\ShaderOLD.vert";
-
-                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\ShaderOLD.frag";
-            }
-            else if (type == ShaderType.TEMP_CUBE)
-            {
                 vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\Standard.vert";
 
-                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\Transformation.frag";
-            }
-            else if (type == ShaderType.TEMP_SQUARE2)
-            {
-                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\square2.vert";
-
-                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\square2.frag";
-            }
-            else if (type == ShaderType.TEMP_OPENTK)
-            {
-                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\OpenTK.vert";
-
-                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\OpenTK.frag";
-            }
-            else if (type == ShaderType.TEMP_TRANSFORMATION)
-            {
-                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\Transformation.vert";
-
-                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\Transformation.frag";
-            }
-            else if (type == ShaderType.TEMP_COLOUREDSQUARE)
-            {
-                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\colouredsquare.vert";
-
-                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\colouredsquare.frag";
-            }
-            else if (type == ShaderType.TEMP_SHADER)
-            {
-                vertPath = "F:\\GameDev\\Engine\\Engine\\Rendering\\Shaders\\Shader.vert";
-
-                fragPath = "F:\\GameDev\\Engine\\Engine\\Rendering\\Shaders\\Shader.frag";
-            }
-            else if (type == ShaderType.TEMP_HELLOTRIANGLE)
-            {
-                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\hellosquare.vert";
-
-                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\hellotrianglealt.frag";
-            }
-            else if (type == ShaderType.TEMP_HELLOSQUARE1)
-            {
-                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\hellosquare.vert";
-
-                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\hellosquare.frag";
-            }
-            else if (type == ShaderType.TEMP_HELLOSQUARE2)
-            {
-                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\hellosquare2.vert";
-
-                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\hellosquare2.frag";
-            }
-            else if (type == ShaderType.TEMP1)
-            {
-                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\temp1.vert";
-
-                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\temp1.frag";
-            }
-            else if (type == ShaderType.TEMP2)
-            {
-                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\temp2.vert";
-
-                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\temp2.frag";
-            }
-            else if (type == ShaderType.TEMP3)
-            {
-                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\temp3.vert";
-
-                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\temp3.frag";
-            }
-            else if (type == ShaderType.TEMP_SHADEROLD)
-            {
-                vertPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\ShaderOLD.vert";
-
-                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\ShaderOLD.frag";
+                fragPath = "F:\\GameDev\\.Engine\\Engine\\Engine\\Rendering\\Shaders\\Standard.frag";
             }
             else
             {

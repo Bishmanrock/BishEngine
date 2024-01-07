@@ -14,7 +14,7 @@ namespace Engine
 
         private void CreateShaderProgram()
         {
-            shader = new Shader(ShaderType.TEMP_HELLOSQUARE1);
+            shader = new Shader(ShaderType.STANDARD);
             shader.Use();
         }
 
