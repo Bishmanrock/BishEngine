@@ -27,11 +27,8 @@ namespace Engine
 
             renderData = new Renderable(mesh.GetMeshVertices(), _indices, this);
 
-            renderData.SetTexture(TextureManager.GetTexture("border"), 0);
-            renderData.SetTexture(TextureManager.GetTexture("dougFace"), 1);
-
-            //renderData.SetTexture(TextureManager.GetTexture("dougFace"), 0);
-            //renderData.SetTexture(TextureManager.GetTexture("border"), 1);
+            renderData.SetTexture("border", 0);
+            renderData.SetTexture("dougFace", 1);
         }
 
         public Shader GetShader()

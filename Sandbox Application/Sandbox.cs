@@ -41,6 +41,8 @@ public class Sandbox : EngineMain
 
         TextureManager.AddTexture("border", "F:\\GameDev\\.Engine\\Engine\\Sandbox Application\\Texture\\Untitled.png");
 
+        TextureManager.AddTexture("font", "F:\\GameDev\\.Engine\\Engine\\Engine\\Graphics\\Fonts\\Font - System 16x16.png");
+
         try
         {
             reader = new StreamReader("F:\\GameDev\\.Engine\\Engine\\Engine\\Outgoing\\Test.txt");
@@ -87,12 +89,13 @@ public class Sandbox : EngineMain
         rightPaddle = new Cube();
         rightPaddle.transform.SetPosition(new Vector3(1, 0, 0));
 
-        //text = new Quad();
+        text = new Quad();
 
         ball = new Cube();
         ball.transform.SetScale(new Vector3(0.1f, 0.1f, 0.1f));
 
         camera = new Camera();
+        //camera.transform.SetPosition(new Vector3(camera.transform.position.x, camera.transform.position.y + 4, camera.transform.position.z));
     }
 
     public override void Update()

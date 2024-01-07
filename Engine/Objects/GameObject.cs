@@ -7,6 +7,7 @@ namespace Engine
         public Transform transform;
 
         public bool isActive; // Whether the GameObject is active or not
+        public bool isRenderable;
 
         public GameObject()
         {

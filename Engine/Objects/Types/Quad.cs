@@ -27,10 +27,9 @@ namespace Engine
 
         public unsafe Quad()
         {
+            renderData = new Renderable(_vertices, _indices, this);
 
-            //renderData = new Renderable(_vertices, _indices, "F:\\GameDev\\.Engine\\Engine\\Engine\\Graphics\\Fonts\\Font - System 16x16.png", null, this);
-
-            renderData = new Renderable(mesh.GetMeshVertices(), _indices, this);
+            renderData.SetTexture("font", 0);
         }
 
         public Shader GetShader()
@@ -38,7 +37,7 @@ namespace Engine
             return renderData.shader;
         }
 
-        public unsafe void Draw()
+        public unsafe void Draw2()
         {
             // Then, we pass all of these matrices to the vertex shader.
             // You could also multiply them here and then pass, which is faster, but having the separate matrices available is used for some advanced effects.

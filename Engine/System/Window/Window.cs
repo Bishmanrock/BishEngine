@@ -15,8 +15,7 @@ namespace Engine
         private static Vector4 backgroundColour;
 
         //public static Action<GLFW.Window, int, int> WindowSizeCallbackDelegate;
-
-        private static GLFW.SizeCallback sizeCallback; // The callback for window resize
+        //private static GLFW.SizeCallback sizeCallback; // The callback for window resize
 
         // Creates the application window
         public static void CreateWindow(int width, int height, string title)
@@ -52,19 +51,21 @@ namespace Engine
 
             //WindowSizeCallbackDelegate = new Action<GLFW.Window, int, int>(WindowSizeCallback);
 
-            sizeCallback = OnWindowSizeChanged;
-            Glfw.SetFramebufferSizeCallback(window, sizeCallback);
+            //sizeCallback = OnWindowSizeChanged;
 
-            //Glfw.SetWindowSizeCallback(window, WindowSizeCallbackDelegate);
+            // Set the Callback for Window resizing
+            Glfw.SetWindowSizeCallback((GLFW.Window)window, OnWindowSizeChanged);
 
-
+            //Glfw.SetFramebufferSizeCallback(window, sizeCallback);
 
             Glfw.SetFramebufferSizeCallback(window, FramebufferSizeCallback);
         }
 
+        // Handle window size change
         private static void OnWindowSizeChanged(GLFW.Window window, int width, int height)
         {
-            // Handle window size change
+            // Adjust the viewport to the new window size
+            glViewport(0, 0, width, height);
         }
 
         public static void CloseWindow()

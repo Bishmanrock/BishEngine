@@ -55,9 +55,11 @@ namespace Engine
         }
       
         // Sets a texture layer
-        public void SetTexture(Texture texture, int layer)
+        public void SetTexture(string name, int layer)
         {
-            string uniform = $"texture{layer}path";
+            Texture texture = TextureManager.GetTexture(name);
+
+            string uniform = $"texture{layer}";
 
             shader.SetInt(uniform, layer);
 
@@ -91,7 +93,7 @@ namespace Engine
             //foreach (Texture texture in textureList)
             foreach (Texture texture in textureArray)
             {
-                //int index = textureList.IndexOf(texture); // Gets the index of the texture
+                if (texture == null) return; // If no texture in this layer, then skip
 
                 int index = Array.IndexOf(textureArray, texture);
 
