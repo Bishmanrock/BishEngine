@@ -10,14 +10,16 @@ uniform mat4 transform;
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
-
 uniform vec2 offsets[100];
 
 // OUTPUTS
 out vec2 texCoord;
+out float height;
 
 void main(void)
 {
+    height = (aPosition.y + 0.75f) / (2 * 0.75f);
+
     texCoord = aTexCoord;
 
     //gl_Position = vec4(aPosition, 1.0);

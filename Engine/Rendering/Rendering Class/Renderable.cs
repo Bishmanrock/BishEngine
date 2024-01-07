@@ -72,6 +72,10 @@ namespace Engine
 
             shader.Use();
 
+            // palette
+            //uint samplerLocation = glGetUniformLocation(shader.Handle, null);
+            //
+
             glBindVertexArray(vertexArrayObject);
 
             shader.SetMatrix4("model", gameObject.TransformToModel(gameObject.transform));

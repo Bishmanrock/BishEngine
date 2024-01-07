@@ -6,10 +6,13 @@
 in vec2 texCoord;
 
 // OUTPUTS
-out vec4 outputColor;
+out vec4 fragColor;
 
 uniform sampler2D texture0;
 uniform sampler2D texture1;
+
+uniform sampler1D colorRamp;
+in float height;
 
 uniform vec4 colour;
 
@@ -45,14 +48,10 @@ void main()
     if (isWireframeMode)
     {
         // Output white colour
-        outputColor = vec4(1.0, 1.0, 1.0, 1.0);
+        fragColor = vec4(1.0, 1.0, 1.0, 1.0);
     }
     else
     {
-        //outputColor = mix(texture(texture0, texCoord), texture(texture1, texCoord), texture(texture1, texCoord).a * 0.2);
-
-        outputColor = findNearestPaletteColour(outputColor); // Convert colours
-
-        //gl_FragColor = vec4(newColor, 1.0);
+        fragColor = mix(texture(texture0, texCoord), texture(texture1, texCoord), texture(texture1, texCoord).a * 0.2);
     }
 }

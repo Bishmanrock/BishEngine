@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// The Shader class uses this to decide which vert/frag script to use. Most will use Standard.
 
 namespace Engine
 {
