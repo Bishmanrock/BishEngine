@@ -19,8 +19,12 @@ public class Sandbox : EngineMain
     private Shader shader;
     //
 
+    Sprite sprite;
+
     private float ballSpeed = 0.2f;
     private float paddleSpeed = 0.5f;
+
+    private bool wireframe = false;
 
     // We create a double to hold how long has passed since the program was opened.
     private float _time;
@@ -89,6 +93,8 @@ public class Sandbox : EngineMain
         rightPaddle = new Cube();
         rightPaddle.transform.SetPosition(new Vector3(1, 0, 0));
 
+        sprite = new Sprite(TextureManager.GetTexture("font"));
+
         text = new Quad();
 
         ball = new Cube();
@@ -111,6 +117,12 @@ public class Sandbox : EngineMain
         else if (Input.GetKey(KeyCode.Down))
         {
             leftPaddle.transform.SetPosition(new Vector3(leftPaddle.transform.position.x, leftPaddle.transform.position.y - paddleSpeed * Time.deltaTime, leftPaddle.transform.position.z));
+        }
+
+        // Sets the mode as wireframe
+        if (Input.GetKeyDown(KeyCode.Left))
+        {
+            RenderingManager.SetWireframeMode();
         }
 
         // We add the time elapsed since last frame, times 4.0 to speed up animation, to the total amount of time passed.

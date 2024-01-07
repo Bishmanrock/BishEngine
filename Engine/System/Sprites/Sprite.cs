@@ -1,6 +1,6 @@
 ﻿namespace Engine
 {
-    class Sprite : GameObject
+    public class Sprite
     {
         public Texture texture;
 

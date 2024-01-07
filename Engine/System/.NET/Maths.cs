@@ -18,6 +18,8 @@ namespace Engine
         /// </summary>
         public const float PiOver2 = Pi / 2f;
 
+        public const float PiOver4 = Pi / 4f;
+
         [MethodImpl(MethodImplOptions.InternalCall)]
         public static extern float Sin(float x);
 

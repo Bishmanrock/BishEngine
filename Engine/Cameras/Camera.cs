@@ -12,6 +12,7 @@ namespace Engine
 
         // This represents how the vertices will be projected. It's hard to explain through comments,
         // so check out the web version for a good demonstration of what this does.
+        // Note: This shouldn't be in the individual camera? It ties into aspect ratio so surely would need to be across all cameras
         private Matrix4x4 _projection;
 
         public Camera()

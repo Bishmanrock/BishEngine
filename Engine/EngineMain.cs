@@ -65,7 +65,11 @@ namespace Engine
                 RenderingManager.Draw(); // Not in full use yet
 
                 Glfw.SwapBuffers(Window.window); // Swap fore/back framebuffers
-                Glfw.PollEvents(); // Poll for operating system events, such as keyboard or mouse input events
+
+                if (Window.window != IntPtr.Zero)
+                {
+                    Glfw.PollEvents(); // Poll for operating system events, such as keyboard or mouse input events
+                }
 
                 Window.DrawBackground();
             }

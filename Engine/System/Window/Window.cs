@@ -14,8 +14,8 @@ namespace Engine
 
         private static Vector4 backgroundColour;
 
-        //public static Action<GLFW.Window, int, int> WindowSizeCallbackDelegate;
-        //private static GLFW.SizeCallback sizeCallback; // The callback for window resize
+        // Callback delegates
+        private static GLFW.SizeCallback _resizeCallback;
 
         // Creates the application window
         public static void CreateWindow(int width, int height, string title)
@@ -45,27 +45,34 @@ namespace Engine
 
             Import(Glfw.GetProcAddress);
 
-            SetWindowSize();
+            //SetWindowSize();
             EnableVsync(false);
 
-
-            //WindowSizeCallbackDelegate = new Action<GLFW.Window, int, int>(WindowSizeCallback);
-
-            //sizeCallback = OnWindowSizeChanged;
-
             // Set the Callback for Window resizing
-            Glfw.SetWindowSizeCallback((GLFW.Window)window, OnWindowSizeChanged);
-
-            //Glfw.SetFramebufferSizeCallback(window, sizeCallback);
-
-            Glfw.SetFramebufferSizeCallback(window, FramebufferSizeCallback);
+            _resizeCallback = new GLFW.SizeCallback(SetWindowSize);
+            Glfw.SetWindowSizeCallback((GLFW.Window)window, _resizeCallback);
         }
 
         // Handle window size change
-        private static void OnWindowSizeChanged(GLFW.Window window, int width, int height)
+        private static void SetWindowSize(GLFW.Window window, int width, int height)
         {
+            Console.Write("Resizing window");
+
             // Adjust the viewport to the new window size
             glViewport(0, 0, width, height);
+
+            SetAspectRatio();
+        }
+
+        private static void SetAspectRatio()
+        {
+            // Recalculate the aspect ratio
+            float aspectRatio = windowSize.x / windowSize.y;
+
+            // Update the projection matrix
+            Matrix4x4 projection = Matrix4x4.CreatePerspectiveFieldOfView(Maths.PiOver4, aspectRatio, 0.1f, 100f);
+
+
         }
 
         public static void CloseWindow()
@@ -100,20 +107,6 @@ namespace Engine
             Glfw.WindowHint(Hint.Resizable, true);
         }
 
-        private static void FramebufferSizeCallback(GLFW.Window window, int width, int height)
-        {
-            Console.Write("Framebuffersizecallback");
-            // This call back is registered in the CreateWindow() function, and is triggered whenever the window is resized, stretching the window to the new width and height
-            glViewport(0, 0, width, height);
-        }
-
-        // Event used for resizing the window
-        public static void WindowSizeCallback(GLFW.Window window, int width, int height)
-        {
-            Console.Write("Window resize");
-            glViewport(0, 0, width, height);
-        }
-
         public static void SetBackgroundColour(Vector4 colour)
         {
             backgroundColour = colour;
@@ -122,38 +115,6 @@ namespace Engine
         public static void DrawBackground()
         {
             glClearColor(backgroundColour.X, backgroundColour.Y, backgroundColour.Z, backgroundColour.W);
-        }
-
-        // Sets the new size of the window and then calls SetWindowSize
-        public static void ResizeWindow(int width, int height)
-        {
-            windowSize = new Vector2(width, height);
-            SetWindowSize2(width, height);
-        }
-
-        // Sets the window to the windowSize
-        private static void SetWindowSize()
-        {
-            glViewport(0, 0, (int)windowSize.x, (int)windowSize.y);
-        }
-
-        // Testing only, potential replacement for the above
-        public static void SetWindowSize2(int width, int height)
-        {
-            // Calculate the proper aspect ratio to use based on window ratio
-            var ratioX = width / (float)windowSize.x;
-            var ratioY = height / (float)windowSize.y;
-            var ratio = ratioX < ratioY ? ratioX : ratioY;
-
-            // Calculate the width and height that the will be rendered to
-            var viewWidth = Convert.ToInt32(windowSize.x * ratio);
-            var viewHeight = Convert.ToInt32(windowSize.y * ratio);
-
-            // Calculate the position, which will apply proper "pillar" or "letterbox" 
-            var viewX = Convert.ToInt32((width - windowSize.x * ratio) / 2);
-            var viewY = Convert.ToInt32((height - windowSize.y * ratio) / 2);
-
-            glViewport(0, 0, (int)windowSize.x, (int)windowSize.y);
         }
 
         // Renders the window. Called every frame.
