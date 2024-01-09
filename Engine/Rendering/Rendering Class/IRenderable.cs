@@ -4,8 +4,16 @@
 
 namespace Engine
 {
-    public interface IRenderable
+    public interface IRenderable : IObject
     {
         public Renderable renderData { get; }
+
+        public void Render()
+        {
+            if (isActive == true)
+            {
+                renderData.Draw();
+            }
+        }
     }
 }

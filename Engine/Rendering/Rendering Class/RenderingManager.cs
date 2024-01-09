@@ -20,16 +20,16 @@ namespace Engine
 
         private static bool wireframeMode = false;
 
-        private static List<GameObject> renderList = new List<GameObject>();
+        private static List<IRenderable> renderList = new List<IRenderable>();
 
         // Adds a GameObject to the renderList
-        public static void Add(GameObject gameObject)
+        public static void Add(IRenderable gameObject)
         {
             renderList.Add(gameObject);
         }
 
         // Removes a GameObject from the renderList
-        public static void Remove(GameObject gameObject)
+        public static void Remove(IRenderable gameObject)
         {
             renderList.Remove(gameObject);
         }

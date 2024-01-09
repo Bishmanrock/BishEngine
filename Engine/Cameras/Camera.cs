@@ -2,7 +2,7 @@
 
 namespace Engine
 {
-    public class Camera
+    public class Camera : IObject
     {
         private CameraMode cameraMode = CameraMode.PERSPECTIVE; // The camera mode. Either perspective or orthographic. Defaults to perspective.
 
@@ -44,5 +44,8 @@ namespace Engine
         {
             return _projection;
         }
+
+        public Transform transform { get; set; }
+        public bool isActive { get; set; }
     }
 }

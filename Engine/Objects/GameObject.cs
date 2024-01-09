@@ -2,16 +2,14 @@
 
 namespace Engine
 {
-    public class GameObject : Object
+    public class GameObject : Object, IObject
     {
-        public Transform transform;
-
-        public bool isActive; // Whether the GameObject is active or not
-        public bool isRenderable;
+        public Transform transform { get; set; }
+        public bool isActive { get; set; }
 
         public GameObject()
         {
-            transform = new Transform();
+            //transform = new Transform();
             SetActive(true);
         }
 
@@ -22,14 +20,15 @@ namespace Engine
 
             if (isActive == true)
             {
-                RenderingManager.Add(this);
+                //RenderingManager.Add(this);
             }
             else
             {
-                RenderingManager.Remove(this);
+                //RenderingManager.Remove(this);
             }
         }
 
+        // THIS IS NOW IN THE GAMEOBJECT CLASS AND SHOULD BE REMOVED FROM HERE ONCE CONFIRMED SAFE TO DO SO
         /// <summary>
         /// Creates the matrix which transforms vertex positions into world positions.
         /// </summary>

@@ -66,7 +66,7 @@ namespace Engine
         {
             //renderData = new Renderable(_vertices, _indices, "F:\\GameDev\\.Engine\\Engine\\Engine\\Graphics\\Fonts\\Font - System 16x16.png", "F:\\GameDev\\.Engine\\Engine\\Engine\\Graphics\\Fonts\\Font - System 16x16.png", this);
 
-            renderData = new Renderable(mesh.GetMeshVertices(), _indices, this);
+            renderData = new Renderable(mesh.GetMeshVertices(), _indices);
         }
 
         public Shader GetShader()

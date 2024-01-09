@@ -106,7 +106,7 @@ public class Sandbox : EngineMain
 
     public override void Update()
     {
-        CheckCollisions();
+        //CheckCollisions();
         MoveBall();
 
 

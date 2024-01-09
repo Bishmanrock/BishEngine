@@ -27,7 +27,7 @@ namespace Engine
 
         public unsafe Quad()
         {
-            renderData = new Renderable(_vertices, _indices, this);
+            renderData = new Renderable(_vertices, _indices);
 
             renderData.SetTexture("font", 0);
         }

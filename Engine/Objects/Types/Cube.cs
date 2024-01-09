@@ -5,7 +5,7 @@ using static OpenGL.GL;
 
 namespace Engine
 {
-    public class Cube : GameObject, IRenderable
+    public class Cube : IRenderable, ICollideable
     {
         public Renderable renderData { get; }
 
@@ -22,10 +22,12 @@ namespace Engine
         {
             mesh = new MeshCube();
 
-            collider = new Collider(this);
-            collider.SetVertices(mesh.GetMeshVertices());
+            //collider = new Collider(this);
+            //collider.SetVertices(mesh.GetMeshVertices());
 
-            renderData = new Renderable(mesh.GetMeshVertices(), _indices, this);
+            renderData = new Renderable(mesh.GetMeshVertices(), _indices);
+
+            RenderingManager.Add(this);
 
             renderData.SetTexture("border", 0);
             renderData.SetTexture("dougFace", 1);
@@ -35,5 +37,8 @@ namespace Engine
         {
             return renderData.shader;
         }
+
+        public Transform transform { get; set; }
+        public bool isActive { get; set; }
     }
 }

@@ -18,9 +18,8 @@ namespace Engine
 
         private Texture[] textureArray = new Texture[2];
 
-        public unsafe Renderable(float[] vert, uint[] ind, GameObject gameObject)
+        public unsafe Renderable(float[] vert, uint[] ind)
         {
-            this.gameObject = gameObject;
             vertices = vert;
             indices = ind;
 
@@ -68,13 +67,7 @@ namespace Engine
 
         public void Draw()
         {
-            if (gameObject.isActive == false) return;
-
             shader.Use();
-
-            // palette
-            //uint samplerLocation = glGetUniformLocation(shader.Handle, null);
-            //
 
             glBindVertexArray(vertexArrayObject);
 
