@@ -98,5 +98,10 @@ namespace Engine
                 glBindTexture(GL_TEXTURE_2D, texture.Handle);
             }
         }
+
+        public void SetGameObject(GameObject gameObject)
+        {
+            this.gameObject = gameObject;
+        }
     }
 }
