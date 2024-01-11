@@ -88,9 +88,11 @@ public class Sandbox : EngineMain
 
 
         leftPaddle = new Cube();
+        RenderingManager.Add(leftPaddle);
         leftPaddle.transform.SetPosition(new Vector3(-1, 0, 0));
 
         rightPaddle = new Cube();
+        RenderingManager.Add(rightPaddle);
         rightPaddle.transform.SetPosition(new Vector3(1, 0, 0));
 
         sprite = new Sprite(TextureManager.GetTexture("font"));
@@ -98,6 +100,7 @@ public class Sandbox : EngineMain
         text = new Quad();
 
         ball = new Cube();
+        RenderingManager.Add(ball);
         ball.transform.SetScale(new Vector3(0.1f, 0.1f, 0.1f));
 
         camera = new Camera();

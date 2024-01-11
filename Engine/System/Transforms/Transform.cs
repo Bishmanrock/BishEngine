@@ -53,15 +53,13 @@ namespace Engine
         /// <summary>
         /// Creates the matrix which transforms vertex positions into world positions.
         /// </summary>
-        /// <param name="transform"></param>
-        /// <returns>The transformation matrix.</returns>
-        public Matrix4x4 TransformToModel(Transform transform)
+        public Matrix4x4 TransformToModel()
         {
-            return Matrix4x4.CreateRotationX(transform.rotation.x) *
-                Matrix4x4.CreateRotationY(transform.rotation.y) *
-                 Matrix4x4.CreateRotationZ(transform.rotation.z) *
-                Matrix4x4.CreateScale(transform.scale) *
-                 Matrix4x4.CreateTranslation(transform.position.x, transform.position.y, transform.position.z);
+            return Matrix4x4.CreateRotationX(rotation.x) *
+                Matrix4x4.CreateRotationY(rotation.y) *
+                 Matrix4x4.CreateRotationZ(rotation.z) *
+                Matrix4x4.CreateScale(scale) *
+                 Matrix4x4.CreateTranslation(position.x, position.y, position.z);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Engine
 {
     public class Renderable
     {
-        private float[] vertices;
+        public float[] vertices;
         private uint[] indices;
         public Shader shader;
         private uint vertexBufferObject;
@@ -65,7 +65,7 @@ namespace Engine
             textureArray[layer] = texture; // Inserts the Texture at the specific index, which corresponds to the layer
         }
 
-        public void Draw()
+        public void DrawOld()
         {
             shader.Use();
 
@@ -85,7 +85,7 @@ namespace Engine
         // Multiple textures can be bound, if your shader needs more than just one.
         // If you want to do that, use GL.ActiveTexture to set which slot GL.BindTexture binds to.
         // The OpenGL standard requires that there be at least 16, but there can be more depending on your graphics card.
-        private void DrawTextureList()
+        public void DrawTextureList()
         {
             //foreach (Texture texture in textureList)
             foreach (Texture texture in textureArray)

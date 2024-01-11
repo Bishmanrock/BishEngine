@@ -27,10 +27,10 @@ namespace Engine
 
             renderData = new Renderable(mesh.GetMeshVertices(), _indices);
 
-            RenderingManager.Add(this);
-
             renderData.SetTexture("border", 0);
             renderData.SetTexture("dougFace", 1);
+
+            RenderingManager.Add(this);
         }
 
         public Shader GetShader()

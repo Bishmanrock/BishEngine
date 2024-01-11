@@ -12,7 +12,7 @@ namespace Engine
         {
             if (isActive == true)
             {
-                renderData.Draw();
+                //renderData.Draw();
             }
         }
     }
