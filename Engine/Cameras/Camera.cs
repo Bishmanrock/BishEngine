@@ -17,6 +17,8 @@ namespace Engine
 
         public Camera()
         {
+            transform = new Transform();
+
             CameraManager.activeCamera = this; // Sets this as the primary camera. This may need to be split out in future if creating multiple cameras at once.
 
             // For the view, we don't do too much here. Next tutorial will be all about a Camera class that will make it much easier to manipulate the view.

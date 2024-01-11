@@ -95,9 +95,9 @@ public class Sandbox : EngineMain
         RenderingManager.Add(rightPaddle);
         rightPaddle.transform.SetPosition(new Vector3(1, 0, 0));
 
-        sprite = new Sprite(TextureManager.GetTexture("font"));
+        //sprite = new Sprite(TextureManager.GetTexture("font"));
 
-        text = new Quad();
+        //text = new Quad();
 
         ball = new Cube();
         RenderingManager.Add(ball);

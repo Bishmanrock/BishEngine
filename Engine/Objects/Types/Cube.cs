@@ -8,6 +8,8 @@ namespace Engine
     public class Cube : IRenderable, ICollideable
     {
         public Renderable renderData { get; }
+        public Transform transform { get; set; }
+        public bool isActive { get; set; }
 
         private Mesh mesh;
         public Collider collider;
@@ -21,6 +23,7 @@ namespace Engine
         public Cube()
         {
             mesh = new MeshCube();
+            transform = new Transform();
 
             //collider = new Collider(this);
             //collider.SetVertices(mesh.GetMeshVertices());
@@ -37,8 +40,5 @@ namespace Engine
         {
             return renderData.shader;
         }
-
-        public Transform transform { get; set; }
-        public bool isActive { get; set; }
     }
 }
