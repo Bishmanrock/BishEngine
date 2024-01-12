@@ -4,7 +4,7 @@ namespace Engine
 {
     public struct Transform
     {
-        Matrix4x4 transformPosition;
+        Matrix4x4 transformPosition; // What the hell is this?! Which isn't this just the below position Vector3??
 
         public Vector3 position;
         public Vector3 rotation;
@@ -15,7 +15,6 @@ namespace Engine
         {
             Vector4 vec = new Vector4(1.0f, 0.0f, 0.0f, 1.0f);
             transformPosition = Matrix4x4.CreateTranslation(1f, 1f, 0.0f);
-
 
             position = new Vector3(0.0f, 0.0f, 0.0f);
             rotation = new Vector3(0, 0, 0);

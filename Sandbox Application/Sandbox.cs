@@ -86,7 +86,6 @@ public class Sandbox : EngineMain
             //writer.Close();
         }
 
-
         leftPaddle = new Cube();
         RenderingManager.Add(leftPaddle);
         leftPaddle.transform.SetPosition(new Vector3(-1, 0, 0));
@@ -111,7 +110,6 @@ public class Sandbox : EngineMain
     {
         //CheckCollisions();
         MoveBall();
-
 
         if (Input.GetKey(KeyCode.Up))
         {
@@ -158,6 +156,8 @@ public class Sandbox : EngineMain
     {
         // Move the ball
         ball.transform.SetPosition(new Vector3(ball.transform.position.x - ballSpeed * Time.deltaTime, ball.transform.position.y * Time.deltaTime, ball.transform.position.z));
+
+        Console.WriteLine(ball.transform.position);
     }
 
     // Checks if the ball is colliding with one of the paddles
