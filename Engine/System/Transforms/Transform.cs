@@ -4,7 +4,7 @@ namespace Engine
 {
     public struct Transform
     {
-        Matrix4x4 transformPosition; // What the hell is this?! Which isn't this just the below position Vector3??
+        Matrix4x4 transformPosition; // What is this?! Why not just use the below Vector3 positon?
 
         public Vector3 position;
         public Vector3 rotation;

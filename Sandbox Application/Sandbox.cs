@@ -114,6 +114,8 @@ public class Sandbox : EngineMain
         if (Input.GetKey(KeyCode.Up))
         {
             leftPaddle.transform.SetPosition(new Vector3(leftPaddle.transform.position.x, leftPaddle.transform.position.y + paddleSpeed * Time.deltaTime, leftPaddle.transform.position.z));
+
+            leftPaddle.transform.SetRotation(new Vector3(leftPaddle.transform.rotation.x, leftPaddle.transform.rotation.y + paddleSpeed * Time.deltaTime, leftPaddle.transform.rotation.z));
         }
         else if (Input.GetKey(KeyCode.Down))
         {
