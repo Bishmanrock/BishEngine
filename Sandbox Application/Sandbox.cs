@@ -1,6 +1,7 @@
 ﻿using Engine;
 using static OpenGL.GL;
 using System.IO; // For read/writing files
+using GlmSharp;
 
 // This script is used purely for testing engine functionality. It does not actually provide anything to the engine itself and should not be included as part of the project build.
 
@@ -87,23 +88,24 @@ public class Sandbox : EngineMain
         }
 
         leftPaddle = new Cube();
-        RenderingManager.Add(leftPaddle);
+        //RenderingManager.Add(leftPaddle);
         leftPaddle.transform.SetPosition(new Vector3(-1, 0, 0));
 
         rightPaddle = new Cube();
-        RenderingManager.Add(rightPaddle);
+        //RenderingManager.Add(rightPaddle);
         rightPaddle.transform.SetPosition(new Vector3(1, 0, 0));
 
         //sprite = new Sprite(TextureManager.GetTexture("font"));
 
-        //text = new Quad();
+        text = new Quad();
+        RenderingManager.Add(text);
 
         ball = new Cube();
-        RenderingManager.Add(ball);
+        //RenderingManager.Add(ball);
         ball.transform.SetScale(new Vector3(0.1f, 0.1f, 0.1f));
 
         camera = new Camera();
-        //camera.transform.SetPosition(new Vector3(camera.transform.position.x, camera.transform.position.y + 4, camera.transform.position.z));
+        camera.transform.SetPosition(new Vector3(camera.transform.position.x, camera.transform.position.y + 4, camera.transform.position.z));
     }
 
     public override void Update()
@@ -114,13 +116,14 @@ public class Sandbox : EngineMain
         if (Input.GetKey(KeyCode.Up))
         {
             leftPaddle.transform.SetPosition(new Vector3(leftPaddle.transform.position.x, leftPaddle.transform.position.y + paddleSpeed * Time.deltaTime, leftPaddle.transform.position.z));
-
-            leftPaddle.transform.SetRotation(new Vector3(leftPaddle.transform.rotation.x, leftPaddle.transform.rotation.y + paddleSpeed * Time.deltaTime, leftPaddle.transform.rotation.z));
         }
         else if (Input.GetKey(KeyCode.Down))
         {
             leftPaddle.transform.SetPosition(new Vector3(leftPaddle.transform.position.x, leftPaddle.transform.position.y - paddleSpeed * Time.deltaTime, leftPaddle.transform.position.z));
         }
+
+
+        text.transform.SetRotation(new Vector3(text.transform.rotation.x - paddleSpeed * Time.deltaTime, text.transform.rotation.y - paddleSpeed * Time.deltaTime, text.transform.rotation.z - paddleSpeed * Time.deltaTime));
 
         // Sets the mode as wireframe
         if (Input.GetKeyDown(KeyCode.Left))
@@ -137,9 +140,6 @@ public class Sandbox : EngineMain
 
     public unsafe override void Draw()
     {
-
-
-
         // We clear the depth buffer in addition to the color buffer.
         //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -158,8 +158,6 @@ public class Sandbox : EngineMain
     {
         // Move the ball
         ball.transform.SetPosition(new Vector3(ball.transform.position.x - ballSpeed * Time.deltaTime, ball.transform.position.y * Time.deltaTime, ball.transform.position.z));
-
-        Console.WriteLine(ball.transform.position);
     }
 
     // Checks if the ball is colliding with one of the paddles

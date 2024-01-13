@@ -2,9 +2,9 @@
 
 namespace Engine
 {
-    public struct Transform
+    public class Transform
     {
-        Matrix4x4 transformPosition; // What is this?! Why not just use the below Vector3 positon?
+        //Matrix4x4 transformPosition; // What is this?! Why not just use the below Vector3 positon?
 
         public Vector3 position;
         public Vector3 rotation;
@@ -14,7 +14,7 @@ namespace Engine
         public Transform()
         {
             Vector4 vec = new Vector4(1.0f, 0.0f, 0.0f, 1.0f);
-            transformPosition = Matrix4x4.CreateTranslation(1f, 1f, 0.0f);
+            //transformPosition = Matrix4x4.CreateTranslation(1f, 1f, 0.0f);
 
             position = new Vector3(0.0f, 0.0f, 0.0f);
             rotation = new Vector3(0, 0, 0);
